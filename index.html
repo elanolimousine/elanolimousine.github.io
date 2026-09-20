@@ -1,47 +1,126 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ELANO LIMOUSINE | Dashboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ELANO LIMOUSINE | خدمات ليموزين ونقل VIP</title>
+<meta name="description" content="ELANO LIMOUSINE - حجز سيارات وتوصيل مطارات ومحافظات وخدمات VIP.">
 <style>
-:root{--bg:#09090b;--p:#121216;--p2:#19191f;--g:#c9a45c;--t:#f5f1e8;--m:#9b9aa0;--l:#292930;--ok:#43c88a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Tahoma,Arial,sans-serif}.app{min-height:100vh;display:flex}.side{width:245px;position:fixed;right:0;top:0;bottom:0;background:#0e0e11;border-left:1px solid var(--l);padding:20px 14px}.brand{padding:8px;border-bottom:1px solid var(--l);margin-bottom:15px}.brand b{font-size:26px;letter-spacing:2px}.brand span{display:block;color:var(--g);font-size:11px;letter-spacing:3px}.nav button{display:block;width:100%;padding:12px;border:0;background:transparent;color:#bbb;text-align:right;border-radius:9px;margin:3px 0;cursor:pointer}.nav button.active,.nav button:hover{background:#1d1c21;color:#fff}.nav button.active{border-right:3px solid var(--g)}.main{margin-right:245px;width:calc(100% - 245px);padding:28px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.title h1{margin:0;font-size:28px}.title p{color:var(--m);margin:7px 0}.btn{border:0;border-radius:9px;padding:11px 16px;font-weight:bold;cursor:pointer}.gold{background:var(--g);color:#17130a}.ghost{background:transparent;color:#ddd;border:1px solid var(--l)}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card,.panel{background:var(--p);border:1px solid var(--l);border-radius:14px}.card{padding:18px}.label{color:var(--m);font-size:13px}.num{font-size:28px;font-weight:bold;margin-top:7px}.ok{color:var(--ok);font-size:12px}.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-top:16px}.panel{padding:17px;margin-top:16px}.panel h2{font-size:18px;margin:0 0 14px}table{width:100%;border-collapse:collapse}th,td{padding:12px 8px;border-bottom:1px solid var(--l);font-size:12px;text-align:right}th{color:#aaa}.tag{padding:5px 9px;border-radius:20px;background:#2b2a20;color:#e4c875}.active{background:#123226;color:#63d99c}.page{display:none}.page.active{display:block}.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.box{background:#151519;border:1px solid var(--l);border-radius:15px;width:min(700px,100%);padding:22px;max-height:92vh;overflow:auto}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;color:#aaa;font-size:12px;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;background:#0b0b0e;border:1px solid var(--l);color:#fff;border-radius:8px;padding:10px}.field textarea{min-height:75px}.full{grid-column:1/-1}.empty{color:var(--m);text-align:center;padding:20px}
-@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}@media(max-width:650px){.app{display:block}.side{position:static;width:100%;border:0;border-bottom:1px solid var(--l)}.main{margin:0;width:100%;padding:15px}.nav{display:grid;grid-template-columns:repeat(3,1fr)}.nav button{text-align:center;font-size:11px}.form{grid-template-columns:1fr}.full{grid-column:auto}}
-</style></head>
+:root{--bg:#07090d;--panel:#10151c;--panel2:#151c25;--gold:#d9ad55;--gold2:#f2d28a;--text:#f8f8f6;--muted:#aeb6c0;--green:#16bd5b;--blue:#1877d2;--line:rgba(255,255,255,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,"Segoe UI",Arial,sans-serif;line-height:1.75}a{text-decoration:none;color:inherit}
+.container{width:min(1160px,92%);margin:auto}.gold{color:var(--gold2)}
+.nav{position:fixed;z-index:50;inset:0 0 auto;background:rgba(5,7,10,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.navin{height:74px;display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;height:100%;text-decoration:none}.logo img{height:58px;width:auto;display:block;object-fit:contain}.logo span{color:var(--gold)}.navlinks{display:flex;gap:26px;color:#d8dce2;font-size:14px}.navlinks a:hover{color:var(--gold2)}
+.phone{direction:ltr;display:flex;gap:8px;align-items:center;color:#fff;font-weight:800}.phone i{font-style:normal;color:var(--green)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;border-radius:12px;font-weight:900;transition:.2s;border:1px solid transparent}.btn:hover{transform:translateY(-2px)}.wa{background:var(--green);color:white}.call{background:transparent;border-color:rgba(217,173,85,.7);color:var(--gold2)}
+.hero{min-height:760px;padding-top:74px;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(5,7,10,.96),rgba(5,7,10,.52)),url("assets/fleet-hero.jpg") center/cover}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:130px;background:linear-gradient(transparent,var(--bg))}.hero-content{position:relative;z-index:2;max-width:760px}.eyebrow{color:var(--gold);font-weight:900;letter-spacing:3px;font-size:13px}.hero h1{font-size:clamp(43px,6vw,74px);line-height:1.05;margin:12px 0 20px}.hero p{font-size:18px;color:#d4d8de;max-width:680px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-54px;position:relative;z-index:5}.quick .q{background:rgba(16,21,28,.94);border:1px solid var(--line);border-radius:16px;padding:18px}.q b{display:block;color:var(--gold2);margin-bottom:3px}.q span{color:var(--muted);font-size:13px}
+section{padding:88px 0}.head{text-align:center;margin-bottom:38px}.head h2{font-size:38px;margin:7px 0}.head p{color:var(--muted);max-width:680px;margin:auto}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.car{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:17px;overflow:hidden}.car img{width:100%;height:145px;object-fit:cover;display:block}.carbody{padding:15px}.car h3{font-size:16px;margin:0}.car small{color:var(--gold2)}
+.services{background:#090c11}.servicegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.service{padding:24px;border:1px solid var(--line);background:var(--panel);border-radius:17px}.service .ico{font-size:27px}.service h3{margin:8px 0 5px}.service p{margin:0;color:var(--muted);font-size:14px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}.aboutbox{background:linear-gradient(145deg,#151b24,#0c1015);border:1px solid var(--line);border-radius:22px;padding:30px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.stat{text-align:center;padding:15px;background:#090c11;border-radius:13px}.stat b{display:block;color:var(--gold);font-size:24px}
+.booking{background:linear-gradient(135deg,#18140b,#090c11)}.bookbox{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center}.form{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:12px;color:#c8cdd4}.field input,.field select{background:#090c11;color:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;outline:none}.field input:focus,.field select:focus{border-color:var(--gold)}.full{grid-column:1/-1}.form button{width:100%;margin-top:14px;cursor:pointer}
+.chat{position:fixed;z-index:60;left:22px;bottom:22px;width:min(350px,calc(100vw - 44px));background:#f7f7f5;color:#15171b;border-radius:18px;box-shadow:0 18px 60px #0009;overflow:hidden;display:none}.chat.open{display:block}.chathead{background:#151a21;color:#fff;padding:13px 15px;display:flex;justify-content:space-between}.chathead b{color:var(--gold2)}.close{cursor:pointer}.messages{height:235px;padding:14px;overflow:auto;background:#f3f3f1}.msg{padding:9px 11px;border-radius:12px;margin:7px 0;max-width:85%;font-size:13px}.bot{background:#fff;border:1px solid #ddd}.user{background:#dff6e7;margin-right:auto}.chips{display:flex;gap:7px;flex-wrap:wrap;padding:10px}.chip{border:1px solid #ddd;background:white;border-radius:20px;padding:7px 10px;cursor:pointer;font-size:12px}.chatinput{display:flex;padding:10px;border-top:1px solid #ddd}.chatinput input{flex:1;border:0;outline:0}.chatinput button{border:0;background:var(--green);color:#fff;border-radius:9px;padding:8px 12px;cursor:pointer}
+.float{position:fixed;z-index:55;right:18px;bottom:18px;display:flex;flex-direction:column;gap:9px}.float a{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 8px 30px #0007}.float .wa{background:var(--green)}.float .call{background:var(--blue);border:0}
+footer{border-top:1px solid var(--line);padding:28px 0;color:#8f969f;font-size:13px}
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,1fr)}.navlinks{display:none}.quick{grid-template-columns:1fr 1fr}.about,.bookbox{grid-template-columns:1fr}}
+@media(max-width:650px){.hero{min-height:680px}.hero h1{font-size:44px}.hero p{font-size:16px}.grid,.servicegrid{grid-template-columns:1fr 1fr}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.quick{grid-template-columns:1fr 1fr}.navin{height:66px}.phone{font-size:13px}.logo img{height:48px}}
+@media(max-width:430px){.grid,.servicegrid{grid-template-columns:1fr}.quick{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
 <body>
-<div class="app">
-<aside class="side"><div class="brand"><b>ELANO</b><span>LIMOUSINE</span></div><nav class="nav">
-<button class="active" data-p="home">الرئيسية</button><button data-p="bookings">الحجوزات</button><button data-p="drivers">السائقين</button><button data-p="fleet">الأسطول</button><button data-p="customers">العملاء</button><button data-p="services">الخدمات</button>
-</nav></aside>
-<main class="main">
-<section id="home" class="page active"><div class="top"><div class="title"><h1>لوحة التحكم</h1><p>مركز تشغيل ELANO LIMOUSINE</p></div><button class="btn gold" onclick="openModal()">+ حجز جديد</button></div>
-<div class="cards"><div class="card"><div class="label">حجوزات اليوم</div><div class="num" id="count">3</div><div class="ok">متابعة الحجوزات</div></div><div class="card"><div class="label">رحلات نشطة</div><div class="num">2</div><div class="ok">Live</div></div><div class="card"><div class="label">السائقون المتاحون</div><div class="num">8</div><div class="ok">من 11</div></div><div class="card"><div class="label">إيرادات الشهر</div><div class="num">84,500</div><div class="ok">جنيه</div></div></div>
-<div class="grid"><div class="panel"><h2>رحلات اليوم</h2><div id="today"></div></div><div class="panel"><h2>حالة الأسطول</h2><table><tr><td>Elantra AD</td><td><span class="tag active">في رحلة</span></td></tr><tr><td>Corolla</td><td><span class="tag active">متاحة</span></td></tr><tr><td>Xpander</td><td><span class="tag">حجز 22:00</span></td></tr><tr><td>Jetour X70</td><td><span class="tag active">متاحة</span></td></tr><tr><td>Hiace</td><td><span class="tag">صيانة</span></td></tr></table></div></div></section>
+<nav class="nav"><div class="container navin">
+<a class="logo" href="#" aria-label="ELANO LIMOUSINE"><img src="assets/elano-logo.png" alt="ELANO LIMOUSINE"></a>
+<div class="navlinks"><a href="#fleet">الأسطول</a><a href="#services">خدماتنا</a><a href="#about">عن الشركة</a><a href="#booking">الحجز</a></div>
+<a class="phone" href="tel:01223831573"><i>☎</i> 01223831573</a>
+</div></nav>
 
-<section id="bookings" class="page"><div class="top"><div class="title"><h1>الحجوزات</h1><p>إدارة الرحلات</p></div><button class="btn gold" onclick="openModal()">+ حجز جديد</button></div><div class="panel" id="all"></div></section>
-<section id="drivers" class="page"><div class="top"><div class="title"><h1>السائقين</h1><p>الحالة والتوزيع</p></div></div><div class="panel"><table><tr><th>السائق</th><th>الهاتف</th><th>العربية</th><th>الحالة</th><th>رحلات اليوم</th></tr><tr><td>محمد أحمد</td><td>01000000001</td><td>Elantra AD</td><td><span class="tag active">متاح</span></td><td>3</td></tr><tr><td>أحمد محمود</td><td>01000000002</td><td>Corolla</td><td><span class="tag active">في رحلة</span></td><td>4</td></tr><tr><td>كريم علي</td><td>01000000003</td><td>Xpander</td><td><span class="tag">غير متاح</span></td><td>2</td></tr></table></div></section>
-<section id="fleet" class="page"><div class="top"><div class="title"><h1>الأسطول</h1><p>السيارات</p></div></div><div class="cards"><div class="card"><div class="label">Hyundai Elantra AD</div><div class="num">4</div><div class="ok">ركاب • 2 شنطة</div></div><div class="card"><div class="label">Toyota Corolla</div><div class="num">4</div><div class="ok">ركاب • 2 شنطة</div></div><div class="card"><div class="label">Mitsubishi Xpander</div><div class="num">7</div><div class="ok">ركاب • 4 شنط</div></div><div class="card"><div class="label">Toyota Hiace</div><div class="num">14</div><div class="ok">ركاب</div></div></div></section>
-<section id="customers" class="page"><div class="top"><div class="title"><h1>العملاء</h1><p>بيانات العملاء</p></div></div><div class="panel"><table><tr><th>الاسم</th><th>الهاتف</th><th>الحجوزات</th><th>آخر خدمة</th></tr><tr><td>أحمد محمد</td><td>01234567890</td><td>7</td><td>مطار برج العرب</td></tr><tr><td>سارة علي</td><td>01123456789</td><td>3</td><td>رحلة محافظات</td></tr><tr><td>محمد حسن</td><td>01098765432</td><td>2</td><td>زفاف</td></tr></table></div></section>
-<section id="services" class="page"><div class="top"><div class="title"><h1>الخدمات</h1><p>خدمات ELANO</p></div></div><div class="cards"><div class="card"><div class="num">✈️</div><div class="label">توصيل المطارات</div></div><div class="card"><div class="num">🛣️</div><div class="label">رحلات المحافظات</div></div><div class="card"><div class="num">💼</div><div class="label">رجال الأعمال</div></div><div class="card"><div class="num">💍</div><div class="label">الزفاف والأفراح</div></div></div></section>
-</main></div>
+<header class="hero"><div class="container hero-content">
+<div class="eyebrow">ELANO LIMOUSINE • VIP TRANSPORTATION</div>
+<h1>رحلتك... <span class="gold">بأمان وراحة</span></h1>
+<p>خدمات ليموزين ونقل خاصة بسيارات حديثة وسائقين محترفين. حجز سريع للمطارات والمحافظات والمشاوير الخاصة.</p>
+<div class="actions"><a class="btn wa" href="https://wa.me/201223831573?text=مرحباً، أريد حجز سيارة">💬 احجز الآن عبر واتساب</a><a class="btn call" href="tel:01223831573">📞 اتصل الآن</a></div>
+</div></header>
 
-<div class="modal" id="modal"><div class="box"><div class="top"><h2>إضافة حجز</h2><button class="btn ghost" onclick="closeModal()">إغلاق</button></div>
-<form id="form" class="form">
-<div class="field"><label>اسم العميل</label><input name="name" required></div><div class="field"><label>رقم الهاتف</label><input name="phone" required></div>
-<div class="field"><label>الخدمة</label><select name="service"><option>توصيل المطارات</option><option>رحلات المحافظات</option><option>رجال الأعمال</option><option>رحلات عائلية</option><option>حجز مسبق</option><option>مشوار خاص</option><option>الزفاف والأفراح</option></select></div>
-<div class="field"><label>عدد الأفراد</label><input name="people" type="number" min="1" value="1" required></div><div class="field"><label>عدد الشنط</label><input name="bags" type="number" min="0" value="0" required></div><div class="field"><label>التاريخ</label><input name="date" type="date" required></div><div class="field"><label>الوقت</label><input name="time" type="time" required></div><div class="field"><label>العربية</label><select name="car"><option>تحديد لاحقًا</option><option>Hyundai Elantra AD</option><option>Toyota Corolla</option><option>Mitsubishi Xpander</option><option>Jetour X70</option><option>Toyota Hiace</option></select></div>
-<div class="field full"><label>مكان الاستلام</label><input name="from" required></div><div class="field full"><label>الوجهة</label><input name="to" required></div><div class="field full"><label>ملاحظات</label><textarea name="notes"></textarea></div>
-<div class="full"><button class="btn gold" type="submit">حفظ الحجز</button></div></form></div></div>
+<div class="container quick">
+<div class="q"><b>✈️ توصيل المطارات</b><span>استقبال وتوصيل حسب الموعد</span></div>
+<div class="q"><b>🛣️ المحافظات</b><span>رحلات داخل وخارج القاهرة</span></div>
+<div class="q"><b>👔 رجال الأعمال</b><span>خصوصية وراحة في التنقل</span></div>
+<div class="q"><b>🤖 مساعد ذكي</b><span>مساعدة أولية للحجز والاستفسار</span></div>
+</div>
+
+<section id="about"><div class="container about">
+<div><div class="eyebrow">ABOUT US</div><h2>نبذة عن الشركة</h2><p style="color:var(--muted);font-size:17px">ELANO LIMOUSINE تقدم خدمات نقل وليموزين تركز على الراحة، الالتزام بالمواعيد وسهولة الحجز. نساعدك في اختيار السيارة المناسبة لرحلتك ونوفر لك تجربة منظمة من لحظة الحجز حتى الوصول.</p>
+<div class="stats"><div class="stat"><b>24/7</b>حجز واستفسارات</div><div class="stat"><b>VIP</b>خدمة احترافية</div><div class="stat"><b>5</b>فئات سيارات</div></div></div>
+<div class="aboutbox"><h3>🤖 المساعد الذكي</h3><p style="color:var(--muted)">المساعد الموجود بالموقع يجيب عن الأسئلة الأساسية، ويجمع بيانات الرحلة، ثم يحول العميل مباشرة إلى واتساب لإتمام الحجز مع الشركة.</p><button class="btn wa" onclick="openChat()">ابدأ المحادثة</button></div>
+</div></section>
+
+<section id="services" class="services"><div class="container">
+<div class="head"><div class="eyebrow">OUR SERVICES</div><h2>خدماتنا</h2><p>خيارات نقل تناسب الرحلات الفردية والعائلية ورجال الأعمال.</p></div>
+<div class="servicegrid">
+<div class="service"><div class="ico">✈️</div><h3>توصيل المطارات</h3><p>توصيل واستقبال من المطارات مع تنسيق مسبق للموعد.</p></div>
+<div class="service"><div class="ico">🛣️</div><h3>توصيل المحافظات</h3><p>رحلات بين المحافظات بسيارات متنوعة ومريحة.</p></div>
+<div class="service"><div class="ico">👔</div><h3>خدمات رجال الأعمال</h3><p>تنقلات خاصة للاجتماعات والزيارات والرحلات العملية.</p></div>
+<div class="service"><div class="ico">👨‍👩‍👧‍👦</div><h3>رحلات عائلية</h3><p>سيارات واسعة تناسب العائلات والمشاوير الطويلة.</p></div>
+<div class="service"><div class="ico">📅</div><h3>حجز مسبق</h3><p>حدد موعدك وبيانات الرحلة مسبقاً لتسهيل التنسيق.</p></div>
+<div class="service"><div class="ico">📍</div><h3>مشاوير خاصة</h3><p>تنقلات داخل المدن وخارجها حسب وجهتك.</p></div>
+</div></div></section>
+
+<section id="fleet"><div class="container">
+<div class="head"><div class="eyebrow">OUR FLEET</div><h2>أسطول السيارات</h2><p>صور السيارات أدناه مأخوذة من التصميم المعتمد، مع تسمية كل موديل بشكل واضح.</p></div>
+<div class="grid">
+<article class="car"><img src="assets/elantra-ad.jpg" alt="هيونداي إلنترا AD"><div class="carbody"><h3>هيونداي إلنترا AD</h3><small>اقتصادية • مريحة</small></div></article>
+<article class="car"><img src="assets/corolla.jpg" alt="تويوتا كورولا"><div class="carbody"><h3>تويوتا كورولا</h3><small>راحة • اعتمادية</small></div></article>
+<article class="car"><img src="assets/xpander.jpg" alt="ميتسوبيشي إكسباندر"><div class="carbody"><h3>ميتسوبيشي إكسباندر</h3><small>عائلية • واسعة</small></div></article>
+<article class="car"><img src="assets/jetour-x70.jpg" alt="جيتور X70"><div class="carbody"><h3>جيتور X70</h3><small>SUV • عائلية</small></div></article>
+<article class="car"><img src="assets/hiace-new.jpg" alt="تويوتا هاي إس الشكل الجديد"><div class="carbody"><h3>تويوتا هاي إس (الشكل الجديد)</h3><small>مجموعات • رحلات</small></div></article>
+</div></div></section>
+
+<section id="booking" class="booking"><div class="container bookbox">
+<div><div class="eyebrow">FAST BOOKING</div><h2>احجز مشوارك في أقل من دقيقة</h2><p style="color:var(--muted)">اكتب بيانات الرحلة، وسنجهز رسالة واتساب تلقائياً بالبيانات التي أدخلتها.</p><a class="btn call" href="tel:01223831573">📞 01223831573</a></div>
+<form class="form" id="bookingForm">
+<div class="formgrid">
+<div class="field"><label>الاسم</label><input id="name" required placeholder="اسم العميل"></div>
+<div class="field"><label>رقم الهاتف</label><input id="mobile" required placeholder="01xxxxxxxxx" inputmode="tel"></div>
+<div class="field"><label>السيارة</label><select id="car"><option>هيونداي إلنترا AD</option><option>تويوتا كورولا</option><option>ميتسوبيشي إكسباندر</option><option>جيتور X70</option><option>تويوتا هاي إس الشكل الجديد</option></select></div>
+<div class="field"><label>التاريخ</label><input id="date" type="date"></div>
+<div class="field full"><label>مكان الاستلام والوجهة</label><input id="route" required placeholder="مثال: مطار القاهرة → الإسكندرية"></div>
+</div>
+<button class="btn wa" type="submit">💬 إرسال الحجز على واتساب</button>
+</form></div></section>
+
+<footer><div class="container">© 2026 ELANO LIMOUSINE — جميع الحقوق محفوظة • <a href="tel:01223831573">01223831573</a></div></footer>
+
+<div class="float"><a class="wa" href="https://wa.me/201223831573?text=مرحباً، أريد حجز سيارة" aria-label="واتساب">◉</a><a class="call" href="tel:01223831573" aria-label="اتصال">☎</a></div>
+
+<div class="chat" id="chat">
+<div class="chathead"><b>🤖 المساعد الذكي</b><span class="close" onclick="closeChat()">×</span></div>
+<div class="messages" id="messages"><div class="msg bot">أهلاً بك 👋 أنا مساعد ELANO. أقدر أساعدك في الخدمات، السيارات، أو تجهيز بيانات الحجز.</div></div>
+<div class="chips"><button class="chip" onclick="quick('حجز سيارة')">حجز سيارة</button><button class="chip" onclick="quick('الأسعار')">الأسعار</button><button class="chip" onclick="quick('الخدمات')">الخدمات</button><button class="chip" onclick="quick('السيارات')">السيارات</button></div>
+<div class="chatinput"><input id="chatInput" placeholder="اكتب سؤالك..."><button onclick="sendChat()">إرسال</button></div>
+</div>
 <script>
-let bookings=JSON.parse(localStorage.getItem('elanoBookings')||'null')||[
-{name:'أحمد محمد',phone:'01234567890',service:'توصيل المطارات',people:4,bags:3,date:'2026-09-20',time:'20:30',from:'سموحة',to:'مطار برج العرب',status:'نشطة'},
-{name:'سارة علي',phone:'01123456789',service:'رحلات المحافظات',people:3,bags:2,date:'2026-09-20',time:'21:00',from:'الإسكندرية',to:'القاهرة',status:'مجدولة'},
-{name:'محمد حسن',phone:'01098765432',service:'الزفاف والأفراح',people:2,bags:0,date:'2026-09-20',time:'22:00',from:'سان ستيفانو',to:'قاعة أفراح',status:'مجدولة'}];
-const modal=document.getElementById('modal');
-function openModal(){modal.classList.add('open');document.querySelector('[name=date]').value='2026-09-20'}function closeModal(){modal.classList.remove('open')}
-function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.p==id));render()}
-document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>show(b.dataset.p));
-function table(arr){if(!arr.length)return '<div class="empty">لا توجد حجوزات</div>';return '<table><tr><th>العميل</th><th>الخدمة</th><th>أفراد</th><th>شنط</th><th>الوقت</th><th>من</th><th>إلى</th><th>الحالة</th></tr>'+arr.map(b=>'<tr><td>'+b.name+'</td><td>'+b.service+'</td><td>'+b.people+'</td><td>'+b.bags+'</td><td>'+b.time+'</td><td>'+b.from+'</td><td>'+b.to+'</td><td><span class="tag '+(b.status==='نشطة'?'active':'')+'">'+b.status+'</span></td></tr>').join('')+'</table>'}
-function render(){document.getElementById('count').textContent=bookings.length;document.getElementById('today').innerHTML=table(bookings.slice(0,5));document.getElementById('all').innerHTML=table(bookings)}
-document.getElementById('form').onsubmit=e=>{e.preventDefault();let o=Object.fromEntries(new FormData(e.target));bookings.unshift({...o,people:+o.people,bags:+o.bags,status:'مجدولة'});localStorage.setItem('elanoBookings',JSON.stringify(bookings));e.target.reset();closeModal();show('bookings')};render();
-</script></body></html>
+const WA="201223831573";
+function openChat(){document.getElementById('chat').classList.add('open')}
+function closeChat(){document.getElementById('chat').classList.remove('open')}
+function addMsg(t,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=t;document.getElementById('messages').appendChild(d);document.getElementById('messages').scrollTop=99999}
+function reply(t){
+ const x=t.toLowerCase();
+ if(x.includes('سعر')||x.includes('الأسعار')||x.includes('تكلفة')) return 'الأسعار تختلف حسب السيارة، خط السير، والتوقيت. ابعت لنا نقطة الاستلام والوجهة والموعد على واتساب ونرد عليك بالتفاصيل.';
+ if(x.includes('سيار')||x.includes('موديل')) return 'متاح لدينا: إلنترا AD، تويوتا كورولا، إكسباندر، جيتور X70، وتويوتا هاي إس الشكل الجديد.';
+ if(x.includes('خدم')) return 'نقدم توصيل المطارات، توصيل المحافظات، خدمات رجال الأعمال، الرحلات العائلية والمشاوير الخاصة.';
+ if(x.includes('حجز')) return 'تمام. اضغط على "حجز سيارة" أو استخدم نموذج الحجز بالأسفل، وسأجهز لك رسالة واتساب ببيانات الرحلة.';
+ return 'أقدر أساعدك في السيارات والخدمات والحجز. ولو تحب تفاصيل سعر أو رحلة محددة، ابعت نقطة الاستلام والوجهة والموعد.';
+}
+function sendChat(){const i=document.getElementById('chatInput');const t=i.value.trim();if(!t)return;addMsg(t,'user');i.value='';setTimeout(()=>addMsg(reply(t),'bot'),250)}
+function quick(t){addMsg(t,'user');setTimeout(()=>addMsg(reply(t),'bot'),200)}
+document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat()});
+document.getElementById('bookingForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const msg=`مرحباً ELANO LIMOUSINE 👋%0Aأريد حجز سيارة:%0Aالاسم: ${encodeURIComponent(name.value)}%0Aالهاتف: ${encodeURIComponent(mobile.value)}%0Aالسيارة: ${encodeURIComponent(car.value)}%0Aالتاريخ: ${encodeURIComponent(date.value||'غير محدد')}%0Aالاستلام والوجهة: ${encodeURIComponent(route.value)}`;
+ window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');
+});
+</script>
+</body>
+</html>
