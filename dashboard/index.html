@@ -1,187 +1,22 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ELANO LIMOUSINE | Dashboard</title>
-<style>
-:root{--bg:#09090b;--panel:#121216;--panel2:#18181d;--gold:#c9a45c;--gold2:#e0bf79;--text:#f5f1e8;--muted:#9b9aa0;--line:#292930;--green:#43c88a;--red:#e46d6d;--yellow:#d5b85e;--blue:#70a7ff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}.app{min-height:100vh}.side{width:245px;position:fixed;right:0;top:0;bottom:0;background:#0d0d10;border-left:1px solid var(--line);padding:26px 18px;z-index:5}.brand{text-align:center;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:18px}.brand b{font-size:26px;letter-spacing:1px}.brand small{display:block;color:var(--gold);letter-spacing:3px;margin-top:3px}.nav button{display:block;width:100%;border:0;background:none;color:var(--text);padding:14px 15px;text-align:right;border-radius:11px;font-size:15px;cursor:pointer;margin:3px 0}.nav button:hover,.nav button.active{background:#1d1c22;border-right:3px solid var(--gold)}.main{margin-right:245px;padding:30px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:24px}.title h1{margin:0;font-size:28px;color:var(--gold2)}.title p{margin:7px 0 0;color:var(--muted)}.btn{border:0;border-radius:9px;padding:11px 16px;cursor:pointer;font-weight:bold}.gold{background:var(--gold);color:#16130d}.ghost{background:#202026;color:var(--text);border:1px solid var(--line)}.danger{background:#3a1f21;color:#ffb0b0}.small{padding:7px 10px;font-size:12px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}.label{color:var(--muted);font-size:13px}.num{font-size:30px;font-weight:bold;color:var(--green);margin-top:12px}.sub{font-size:12px;color:var(--muted);margin-top:4px}.grid2{display:grid;grid-template-columns:1.5fr 1fr;gap:18px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;overflow:auto}.panel h2{margin:0 0 15px;font-size:18px;color:var(--gold2)}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:12px 9px;border-bottom:1px solid var(--line);text-align:right;font-size:13px;vertical-align:middle}th{color:var(--muted);font-weight:normal}td{color:#e9e6df}.tag{display:inline-block;padding:5px 9px;border-radius:20px;background:#2c2921;color:var(--yellow);font-size:11px}.tag.green{background:#103d2d;color:#66e3a8}.tag.red{background:#401f22;color:#ff9d9d}.tag.blue{background:#172d4d;color:#8cbaff}.page{display:none}.page.active{display:block}.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}.filters input,.filters select{background:#0e0e12;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px 11px;outline:none}.actions{display:flex;gap:6px;flex-wrap:wrap}.empty{text-align:center;padding:35px;color:var(--muted)}.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:20;padding:30px;overflow:auto}.modal.open{display:block}.box{max-width:900px;margin:20px auto;background:#111116;border:1px solid var(--line);border-radius:18px;padding:22px}.boxhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.boxhead h2{margin:0;color:var(--gold2)}.form{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--muted)}.field input,.field select,.field textarea{width:100%;background:#0b0b0e;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:11px;outline:none}.field textarea{min-height:90px;resize:vertical}.formfoot{grid-column:1/-1;display:flex;justify-content:flex-start;gap:9px;margin-top:5px}.route{font-size:12px;color:var(--muted)}.route b{color:var(--text)}.fleet{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.fleet .item{background:var(--panel2);border:1px solid var(--line);padding:14px;border-radius:12px;display:flex;justify-content:space-between}.notice{background:#15151b;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--muted);font-size:12px;margin-top:12px}@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.side{width:190px}.main{margin-right:190px;padding:18px}}@media(max-width:700px){.side{position:static;width:100%;height:auto;border-left:0;border-bottom:1px solid var(--line)}.brand{display:none}.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.nav button{text-align:center;padding:10px}.main{margin-right:0;padding:14px}.cards{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.field.full{grid-column:auto}.formfoot{grid-column:auto}.fleet{grid-template-columns:1fr}.top{align-items:flex-start}.title h1{font-size:23px}}
-</style>
-</head>
-<body>
-<div class="app">
-<aside class="side">
-  <div class="brand"><b>ELANO</b><small>LIMOUSINE</small></div>
-  <nav class="nav">
-    <button data-page="home" class="active">الرئيسية</button>
-    <button data-page="bookings">الحجوزات</button>
-    <button data-page="drivers">السائقين</button>
-    <button data-page="fleet">الأسطول</button>
-    <button data-page="customers">العملاء</button>
-    <button data-page="services">الخدمات</button>
-  </nav>
-</aside>
-
-<main class="main">
-<section id="home" class="page active">
-  <div class="top"><div class="title"><h1>لوحة التحكم</h1><p>مركز تشغيل ELANO LIMOUSINE</p></div><button class="btn gold" onclick="openNew()">+ حجز جديد</button></div>
-  <div class="cards">
-    <div class="card"><div class="label">حجوزات اليوم</div><div class="num" id="statToday">0</div><div class="sub">حسب التاريخ الحالي</div></div>
-    <div class="card"><div class="label">رحلات نشطة</div><div class="num" id="statActive">0</div><div class="sub">جاري تنفيذها</div></div>
-    <div class="card"><div class="label">السائقون المتاحون</div><div class="num">8</div><div class="sub">من 11 سائق</div></div>
-    <div class="card"><div class="label">إيرادات الحجوزات</div><div class="num" id="statRevenue">0</div><div class="sub">جنيه</div></div>
-  </div>
-  <div class="grid2">
-    <div class="panel"><h2>رحلات اليوم</h2><div id="todayTable"></div></div>
-    <div class="panel"><h2>حالة الأسطول</h2><div class="fleet">
-      <div class="item"><span>Elantra AD</span><span class="tag green">في رحلة</span></div>
-      <div class="item"><span>Corolla</span><span class="tag green">متاحة</span></div>
-      <div class="item"><span>Xpander</span><span class="tag">حجز 22:00</span></div>
-      <div class="item"><span>Jetour X70</span><span class="tag green">متاحة</span></div>
-      <div class="item"><span>Hiace</span><span class="tag">صيانة</span></div>
-    </div><div class="notice">المرحلة الحالية تحفظ الحجوزات على هذا المتصفح. في المرحلة التالية نربطها بقاعدة بيانات ليشوفها كل جهاز وحساب.</div></div>
-  </div>
-</section>
-
-<section id="bookings" class="page">
-  <div class="top"><div class="title"><h1>الحجوزات</h1><p>إدارة كل الحجوزات ومتابعة حالتها</p></div><button class="btn gold" onclick="openNew()">+ حجز جديد</button></div>
-  <div class="panel">
-    <div class="filters">
-      <input id="search" placeholder="بحث بالاسم أو الهاتف أو الرحلة..." oninput="renderBookings()">
-      <select id="statusFilter" onchange="renderBookings()"><option value="">كل الحالات</option><option>جديد</option><option>مؤكد</option><option>جاري</option><option>مكتمل</option><option>ملغي</option></select>
-      <input id="dateFilter" type="date" onchange="renderBookings()">
-      <button class="btn ghost small" onclick="clearFilters()">مسح الفلاتر</button>
-    </div>
-    <div id="allTable"></div>
-  </div>
-</section>
-
-<section id="drivers" class="page"><div class="top"><div class="title"><h1>السائقين</h1><p>إدارة السائقين وحالة التشغيل</p></div></div>
-<div class="panel"><table><tr><th>السائق</th><th>الهاتف</th><th>السيارة</th><th>الحالة</th><th>الرحلة الحالية</th></tr>
-<tr><td>أحمد السيد</td><td>01000000001</td><td>Elantra AD</td><td><span class="tag green">متاح</span></td><td>-</td></tr>
-<tr><td>محمد علي</td><td>01000000002</td><td>Corolla</td><td><span class="tag">مشغول</span></td><td>مطار برج العرب</td></tr>
-<tr><td>حسن محمود</td><td>01000000003</td><td>Xpander</td><td><span class="tag green">متاح</span></td><td>-</td></tr>
-</table></div></section>
-
-<section id="fleet" class="page"><div class="top"><div class="title"><h1>الأسطول</h1><p>السيارات وحالتها التشغيلية</p></div></div>
-<div class="panel"><table><tr><th>السيارة</th><th>الفئة</th><th>السعة</th><th>الحالة</th><th>السائق</th></tr>
-<tr><td>Hyundai Elantra AD</td><td>Sedan</td><td>4 ركاب</td><td><span class="tag green">في رحلة</span></td><td>أحمد السيد</td></tr>
-<tr><td>Toyota Corolla</td><td>Sedan</td><td>4 ركاب</td><td><span class="tag green">متاحة</span></td><td>-</td></tr>
-<tr><td>Mitsubishi Xpander</td><td>MPV</td><td>7 ركاب</td><td><span class="tag">محجوزة 22:00</span></td><td>-</td></tr>
-<tr><td>Jetour X70</td><td>SUV</td><td>7 ركاب</td><td><span class="tag green">متاحة</span></td><td>-</td></tr>
-<tr><td>Toyota Hiace</td><td>Van</td><td>14 راكب</td><td><span class="tag">صيانة</span></td><td>-</td></tr>
-</table></div></section>
-
-<section id="customers" class="page"><div class="top"><div class="title"><h1>العملاء</h1><p>بيانات العملاء والحجوزات المرتبطة بهم</p></div></div>
-<div class="panel"><div id="customersTable"></div></div></section>
-
-<section id="services" class="page"><div class="top"><div class="title"><h1>الخدمات</h1><p>خدمات ELANO</p></div></div>
-<div class="cards">
-<div class="card"><div class="num">✈️</div><div class="label">توصيل المطارات</div></div>
-<div class="card"><div class="num">🛣️</div><div class="label">رحلات المحافظات</div></div>
-<div class="card"><div class="num">💼</div><div class="label">رجال الأعمال</div></div>
-<div class="card"><div class="num">👨‍👩‍👧</div><div class="label">رحلات عائلية</div></div>
-<div class="card"><div class="num">💍</div><div class="label">الزفاف والأفراح</div></div>
-<div class="card"><div class="num">🚘</div><div class="label">مشوار خاص</div></div>
-</div></section>
-</main>
-</div>
-
-<div class="modal" id="modal">
-<div class="box">
-<div class="boxhead"><h2 id="modalTitle">إضافة حجز</h2><button class="btn ghost" onclick="closeModal()">إغلاق</button></div>
-<form id="form" class="form">
-<input type="hidden" name="id">
-<div class="field"><label>اسم العميل *</label><input name="name" required></div>
-<div class="field"><label>رقم الهاتف *</label><input name="phone" required></div>
-<div class="field"><label>الخدمة *</label><select name="service"><option>توصيل المطارات</option><option>رحلات المحافظات</option><option>رجال الأعمال</option><option>رحلات عائلية</option><option>حجز مسبق</option><option>مشوار خاص</option><option>الزفاف والأفراح</option></select></div>
-<div class="field"><label>عدد الأفراد *</label><input name="people" type="number" min="1" value="1" required></div>
-<div class="field"><label>عدد الشنط</label><input name="bags" type="number" min="0" value="0"></div>
-<div class="field"><label>التاريخ *</label><input name="date" type="date" required></div>
-<div class="field"><label>الوقت *</label><input name="time" type="time" required></div>
-<div class="field"><label>العربية</label><select name="car"><option>تحديد لاحقًا</option><option>Hyundai Elantra AD</option><option>Toyota Corolla</option><option>Mitsubishi Xpander</option><option>Jetour X70</option><option>Toyota Hiace</option></select></div>
-<div class="field"><label>السعر (جنيه)</label><input name="price" type="number" min="0" value="0"></div>
-<div class="field"><label>حالة الدفع</label><select name="payment"><option>غير مدفوع</option><option>مدفوع</option><option>عربون</option></select></div>
-<div class="field full"><label>مكان الاستلام *</label><input name="from" required></div>
-<div class="field full"><label>الوجهة *</label><input name="to" required></div>
-<div class="field full"><label>ملاحظات</label><textarea name="notes"></textarea></div>
-<div class="formfoot"><button class="btn gold" type="submit">حفظ الحجز</button><button type="button" class="btn ghost" onclick="closeModal()">إلغاء</button></div>
-</form>
-</div></div>
-
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ELANO LIMOUSINE | Operations</title><style>
+:root{--bg:#08090b;--p:#111318;--p2:#17191f;--gold:#d5ae61;--gold2:#f0cd83;--text:#f5f3ed;--muted:#9da0a8;--line:#292c34;--green:#4dd39a;--red:#ef7474;--blue:#70a7ff;--orange:#e0ad4f}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,#141b19 0,#08090b 35%);color:var(--text);font-family:Tahoma,Arial,sans-serif}.side{position:fixed;right:0;top:0;bottom:0;width:250px;background:#0c0d10;border-left:1px solid var(--line);padding:24px 16px;z-index:5}.brand{text-align:center;border-bottom:1px solid var(--line);padding:8px 0 20px;margin-bottom:16px}.brand b{font-size:27px}.brand small{display:block;color:var(--gold);letter-spacing:4px}.nav button{width:100%;background:none;border:0;color:var(--text);padding:13px 15px;border-radius:10px;text-align:right;cursor:pointer;font-size:14px;margin:2px 0}.nav button:hover,.nav button.active{background:#1b1c21;border-right:3px solid var(--gold)}.main{margin-right:250px;padding:28px;max-width:1550px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:22px}.title h1{margin:0;color:var(--gold2);font-size:28px}.title p{margin:6px 0 0;color:var(--muted)}.btn{border:0;border-radius:9px;padding:10px 15px;cursor:pointer;font-weight:700}.gold{background:var(--gold);color:#16120a}.ghost{background:#1a1c21;color:var(--text);border:1px solid var(--line)}.danger{background:#3b2023;color:#ffaaaa}.small{padding:7px 9px;font-size:11px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}.card,.panel{background:rgba(17,19,24,.94);border:1px solid var(--line);border-radius:16px}.card{padding:19px}.label{color:var(--muted);font-size:12px}.num{font-size:29px;color:var(--green);font-weight:800;margin-top:10px}.sub{color:var(--muted);font-size:11px;margin-top:4px}.grid2{display:grid;grid-template-columns:1.55fr 1fr;gap:16px}.panel{padding:18px;overflow:auto}.panel h2{margin:0 0 14px;color:var(--gold2);font-size:18px}.page{display:none}.page.active{display:block}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}.filters input,.filters select,.field input,.field select,.field textarea{background:#0b0c0f;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;outline:none}.filters input,.filters select{min-width:150px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:930px}th,td{padding:11px 8px;border-bottom:1px solid var(--line);text-align:right;font-size:12px;vertical-align:middle}th{color:var(--muted);font-weight:400}.tag{display:inline-block;padding:4px 8px;border-radius:20px;background:#312b1c;color:#e3c56f;font-size:10px}.tag.green{background:#103d2d;color:#69e1aa}.tag.blue{background:#172e4f;color:#8cbaff}.tag.red{background:#402022;color:#ff9d9d}.fleet{display:grid;grid-template-columns:1fr 1fr;gap:9px}.fleet .item{background:var(--p2);border:1px solid var(--line);padding:13px;border-radius:11px;display:flex;justify-content:space-between}.notice{margin-top:12px;padding:11px;border-radius:10px;background:#17181d;color:var(--muted);font-size:11px}.modal{display:none;position:fixed;inset:0;background:#000b;z-index:20;padding:25px;overflow:auto}.modal.open{display:block}.box{max-width:900px;margin:10px auto;background:#111318;border:1px solid var(--line);border-radius:17px;padding:20px}.boxhead{display:flex;justify-content:space-between;align-items:center}.boxhead h2{margin:0;color:var(--gold2)}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:11px;color:var(--muted)}.field.full{grid-column:1/-1}.field textarea{min-height:80px;resize:vertical}.formfoot{grid-column:1/-1;display:flex;gap:8px}.actions{display:flex;gap:5px;flex-wrap:wrap}.empty{text-align:center;color:var(--muted);padding:30px}.links{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.link{color:var(--gold2);text-decoration:none;font-size:11px}@media(max-width:1050px){.cards{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.side{width:205px}.main{margin-right:205px}}@media(max-width:700px){.side{position:static;width:100%;border-left:0;border-bottom:1px solid var(--line)}.brand{display:none}.nav{display:grid;grid-template-columns:repeat(3,1fr)}.nav button{text-align:center;padding:9px}.main{margin-right:0;padding:13px}.form{grid-template-columns:1fr}.field.full,.formfoot{grid-column:auto}.cards{gap:8px}.card{padding:13px}.num{font-size:22px}.title h1{font-size:22px}}
+</style></head><body><aside class="side"><div class="brand"><b>ELANO</b><small>LIMOUSINE</small></div><nav class="nav"><button class="active" data-page="home">الرئيسية</button><button data-page="bookings">الحجوزات</button><button data-page="drivers">السائقين</button><button data-page="fleet">الأسطول</button><button data-page="customers">العملاء</button><button data-page="services">الخدمات</button></nav></aside><main class="main">
+<section id="home" class="page active"><div class="top"><div class="title"><h1>لوحة التحكم</h1><p>مركز تشغيل ELANO LIMOUSINE</p></div><button class="btn gold" onclick="openNew()">+ حجز جديد</button></div><div class="cards"><div class="card"><div class="label">حجوزات اليوم</div><div class="num" id="sToday">0</div><div class="sub">غير الملغاة</div></div><div class="card"><div class="label">رحلات نشطة</div><div class="num" id="sActive">0</div><div class="sub">جاري التنفيذ</div></div><div class="card"><div class="label">السائقون المتاحون</div><div class="num" id="sDrivers">0</div><div class="sub">من إجمالي السائقين</div></div><div class="card"><div class="label">إيرادات الحجوزات</div><div class="num" id="sRevenue">0</div><div class="sub">جنيه</div></div></div><div class="grid2"><div class="panel"><h2>رحلات اليوم</h2><div id="today"></div></div><div class="panel"><h2>حالة الأسطول</h2><div id="fleetHome" class="fleet"></div><div class="notice">هذه نسخة تشغيل تجريبية. البيانات مشتركة بين صفحات النظام على نفس المتصفح.</div></div></div></section>
+<section id="bookings" class="page"><div class="top"><div class="title"><h1>الحجوزات</h1><p>إنشاء وتعديل وإسناد ومتابعة الرحلات</p></div><button class="btn gold" onclick="openNew()">+ حجز جديد</button></div><div class="panel"><div class="filters"><input id="q" placeholder="بحث بالاسم / الهاتف / الكود" oninput="renderBookings()"><select id="sf" onchange="renderBookings()"><option value="">كل الحالات</option><option>جديد</option><option>مؤكد</option><option>جاري</option><option>مكتمل</option><option>ملغي</option></select><input id="df" type="date" onchange="renderBookings()"><button class="btn ghost small" onclick="clearFilters()">مسح</button></div><div id="bookingsTable" class="tablewrap"></div></div></section>
+<section id="drivers" class="page"><div class="top"><div class="title"><h1>السائقين</h1><p>الحسابات التشغيلية وإسناد الرحلات</p></div></div><div class="panel"><div id="driversTable" class="tablewrap"></div></div></section>
+<section id="fleet" class="page"><div class="top"><div class="title"><h1>الأسطول</h1><p>السيارات وحالتها التشغيلية</p></div></div><div class="panel"><div id="fleetTable" class="tablewrap"></div></div></section>
+<section id="customers" class="page"><div class="top"><div class="title"><h1>العملاء</h1><p>سجل العملاء المستخرج من الحجوزات</p></div></div><div class="panel"><div id="customersTable" class="tablewrap"></div></div></section>
+<section id="services" class="page"><div class="top"><div class="title"><h1>الخدمات</h1><p>خدمات ELANO</p></div></div><div class="cards"><div class="card"><div class="num">✈️</div><div class="label">توصيل المطارات</div></div><div class="card"><div class="num">🛣️</div><div class="label">رحلات المحافظات</div></div><div class="card"><div class="num">💼</div><div class="label">رجال الأعمال</div></div><div class="card"><div class="num">👨‍👩‍👧</div><div class="label">رحلات عائلية</div></div><div class="card"><div class="num">💍</div><div class="label">الزفاف والأفراح</div></div><div class="card"><div class="num">🚘</div><div class="label">مشوار خاص</div></div></div></section></main>
+<div id="modal" class="modal"><div class="box"><div class="boxhead"><h2 id="mt">حجز جديد</h2><button class="btn ghost" onclick="closeModal()">إغلاق</button></div><form id="form" class="form"><input type="hidden" name="id"><div class="field"><label>اسم العميل *</label><input name="name" required></div><div class="field"><label>رقم الهاتف *</label><input name="phone" required></div><div class="field"><label>الخدمة</label><select name="service"><option>توصيل المطارات</option><option>رحلات المحافظات</option><option>رجال الأعمال</option><option>رحلات عائلية</option><option>حجز مسبق</option><option>مشوار خاص</option><option>الزفاف والأفراح</option></select></div><div class="field"><label>عدد الأفراد</label><input name="people" type="number" min="1" value="1"></div><div class="field"><label>عدد الشنط</label><input name="bags" type="number" min="0" value="0"></div><div class="field"><label>التاريخ</label><input name="date" type="date" required></div><div class="field"><label>الوقت</label><input name="time" type="time" required></div><div class="field"><label>السيارة</label><select name="car"><option>تحديد لاحقًا</option><option>Hyundai Elantra AD</option><option>Toyota Corolla</option><option>Mitsubishi Xpander</option><option>Jetour X70</option><option>Toyota Hiace</option></select></div><div class="field"><label>السائق</label><select name="driver" id="driverSelect"></select></div><div class="field"><label>السعر (جنيه)</label><input name="price" type="number" min="0" value="0"></div><div class="field"><label>الدفع</label><select name="payment"><option>غير مدفوع</option><option>عربون</option><option>مدفوع</option></select></div><div class="field full"><label>مكان الاستلام *</label><input name="from" required></div><div class="field full"><label>الوجهة *</label><input name="to" required></div><div class="field full"><label>ملاحظات</label><textarea name="notes"></textarea></div><div class="formfoot"><button class="btn gold" type="submit">حفظ الحجز</button><button class="btn ghost" type="button" onclick="closeModal()">إلغاء</button></div></form></div></div>
 <script>
-const KEY='elanoBookingsV2';
-const todayISO=new Date().toISOString().slice(0,10);
-let bookings=JSON.parse(localStorage.getItem(KEY)||'null') || [
-{id:'EL-001',name:'أحمد محمد',phone:'01234567890',service:'توصيل المطارات',people:4,bags:3,date:todayISO,time:'20:30',from:'سموحة',to:'مطار برج العرب',car:'Hyundai Elantra AD',price:850,payment:'غير مدفوع',status:'جديد',notes:''},
-{id:'EL-002',name:'سارة علي',phone:'01123456789',service:'رحلات المحافظات',people:3,bags:2,date:todayISO,time:'21:00',from:'الإسكندرية',to:'القاهرة',car:'Toyota Corolla',price:1200,payment:'عربون',status:'مؤكد',notes:''},
-{id:'EL-003',name:'محمد حسن',phone:'01098765432',service:'الزفاف والأفراح',people:2,bags:0,date:todayISO,time:'22:00',from:'سان ستيفانو',to:'قاعة أفراح',car:'تحديد لاحقًا',price:2500,payment:'غير مدفوع',status:'مؤكد',notes:'تجهيز مسبق'}];
-let editMode=false;
-
-function save(){localStorage.setItem(KEY,JSON.stringify(bookings))}
-function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function statusTag(s){let c=s==='مكتمل'||s==='مؤكد'?'green':s==='جاري'?'blue':s==='ملغي'?'red':'';return '<span class="tag '+c+'">'+esc(s)+'</span>'}
-function openNew(){
- editMode=false; document.getElementById('modalTitle').textContent='إضافة حجز';
- document.getElementById('form').reset(); document.querySelector('[name=id]').value='';
- document.querySelector('[name=date]').value=todayISO; document.querySelector('[name=people]').value=1; document.querySelector('[name=bags]').value=0; document.querySelector('[name=price]').value=0;
- document.getElementById('modal').classList.add('open')
-}
-function openEdit(id){
- const b=bookings.find(x=>x.id===id); if(!b)return;
- editMode=true; document.getElementById('modalTitle').textContent='تعديل الحجز '+b.id;
- const f=document.getElementById('form'); Object.keys(b).forEach(k=>{if(f.elements[k])f.elements[k].value=b[k]});
- document.getElementById('modal').classList.add('open')
-}
-function closeModal(){document.getElementById('modal').classList.remove('open')}
-function nav(page){
- document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(page).classList.add('active');
- document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
- if(page==='bookings')renderBookings(); if(page==='customers')renderCustomers(); renderStats()
-}
-document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>nav(b.dataset.page));
-
-function tableRows(arr){
- if(!arr.length)return '<div class="empty">لا توجد حجوزات مطابقة</div>';
- return '<table><tr><th>الكود</th><th>العميل</th><th>الخدمة</th><th>الموعد</th><th>المسار</th><th>العربية</th><th>السعر</th><th>الحالة</th><th>إجراءات</th></tr>'+
- arr.map(b=>`<tr><td><b>${esc(b.id)}</b></td><td>${esc(b.name)}<br><span class="route">${esc(b.phone)}</span></td><td>${esc(b.service)}</td><td>${esc(b.date)}<br>${esc(b.time)}</td><td class="route"><b>${esc(b.from)}</b> ← ${esc(b.to)}</td><td>${esc(b.car)}</td><td>${Number(b.price||0).toLocaleString('ar-EG')} ج</td><td>${statusTag(b.status)}</td><td><div class="actions">
-<button class="btn ghost small" onclick="openEdit('${b.id}')">تعديل</button>
-<select class="filters" style="margin:0;padding:7px" onchange="changeStatus('${b.id}',this.value)"><option value="">الحالة</option><option>جديد</option><option>مؤكد</option><option>جاري</option><option>مكتمل</option><option>ملغي</option></select>
-<button class="btn ghost small" onclick="whatsapp('${b.id}')">واتساب</button><button class="btn danger small" onclick="removeBooking('${b.id}')">حذف</button>
-</div></td></tr>`).join('')+'</table>'
-}
-function renderBookings(){
- const q=(document.getElementById('search')?.value||'').trim().toLowerCase(), st=document.getElementById('statusFilter')?.value||'', d=document.getElementById('dateFilter')?.value||'';
- let arr=bookings.filter(b=>(!q||[b.id,b.name,b.phone,b.service,b.from,b.to].join(' ').toLowerCase().includes(q))&&(!st||b.status===st)&&(!d||b.date===d));
- document.getElementById('allTable').innerHTML=tableRows(arr)
-}
-function changeStatus(id,status){if(!status)return;const b=bookings.find(x=>x.id===id);if(b){b.status=status;save();renderAll()}}
-function removeBooking(id){const b=bookings.find(x=>x.id===id);if(!b)return;if(confirm('حذف الحجز '+b.id+' للعميل '+b.name+'؟')){bookings=bookings.filter(x=>x.id!==id);save();renderAll()}}
-function whatsapp(id){
- const b=bookings.find(x=>x.id===id);if(!b)return;
- const msg=`حجز ELANO LIMOUSINE%0Aكود الحجز: ${b.id}%0Aاسم العميل: ${b.name}%0Aالهاتف: ${b.phone}%0Aالخدمة: ${b.service}%0Aالتاريخ: ${b.date}%0Aالوقت: ${b.time}%0Aمن: ${b.from}%0Aإلى: ${b.to}%0Aالعربية: ${b.car}%0Aالأفراد: ${b.people}%0Aالشنط: ${b.bags}%0Aالسعر: ${b.price} جنيه%0Aحالة الحجز: ${b.status}`;
- window.open('https://wa.me/'+b.phone.replace(/\D/g,'')+'?text='+msg,'_blank')
-}
-document.getElementById('form').onsubmit=e=>{
- e.preventDefault();const o=Object.fromEntries(new FormData(e.target));
- o.people=+o.people;o.bags=+o.bags;o.price=+o.price;
- if(editMode){const i=bookings.findIndex(b=>b.id===o.id);bookings[i]={...bookings[i],...o}}
- else{o.id='EL-'+String(Date.now()).slice(-6);o.status='جديد';bookings.unshift(o)}
- save();closeModal();nav('bookings');renderAll()
-};
-function renderStats(){
- document.getElementById('statToday').textContent=bookings.filter(b=>b.date===todayISO&&b.status!=='ملغي').length;
- document.getElementById('statActive').textContent=bookings.filter(b=>b.status==='جاري').length;
- document.getElementById('statRevenue').textContent=bookings.filter(b=>b.status!=='ملغي').reduce((s,b)=>s+Number(b.price||0),0).toLocaleString('ar-EG');
- document.getElementById('todayTable').innerHTML=tableRows(bookings.filter(b=>b.date===todayISO).slice(0,5))
-}
-function renderCustomers(){
- const map={};bookings.forEach(b=>{if(!map[b.phone])map[b.phone]={name:b.name,phone:b.phone,count:0,last:b.service};map[b.phone].count++});
- const arr=Object.values(map);document.getElementById('customersTable').innerHTML=arr.length?'<table><tr><th>الاسم</th><th>الهاتف</th><th>الحجوزات</th><th>آخر خدمة</th></tr>'+arr.map(c=>`<tr><td>${esc(c.name)}</td><td>${esc(c.phone)}</td><td>${c.count}</td><td>${esc(c.last)}</td></tr>`).join('')+'</table>':'<div class="empty">لا توجد بيانات عملاء</div>'
-}
-function clearFilters(){document.getElementById('search').value='';document.getElementById('statusFilter').value='';document.getElementById('dateFilter').value='';renderBookings()}
-function renderAll(){renderStats();renderBookings();renderCustomers()}
-renderAll();
-</script>
-</body></html>
+const KEY='elano_ops_v4';const todayISO=new Date().toISOString().slice(0,10);let edit=false;const seedDrivers=[{id:'D01',name:'أحمد السيد',phone:'01000000001',car:'Hyundai Elantra AD',status:'متاح'},{id:'D02',name:'محمد علي',phone:'01000000002',car:'Toyota Corolla',status:'متاح'},{id:'D03',name:'حسن محمود',phone:'01000000003',car:'Mitsubishi Xpander',status:'متاح'},{id:'D04',name:'كريم سمير',phone:'01000000004',car:'Jetour X70',status:'متاح'}];const seedFleet=[['Hyundai Elantra AD','Sedan','4 ركاب','متاحة'],['Toyota Corolla','Sedan','4 ركاب','متاحة'],['Mitsubishi Xpander','MPV','7 ركاب','متاحة'],['Jetour X70','SUV','7 ركاب','متاحة'],['Toyota Hiace','Van','14 راكب','صيانة']];let db=JSON.parse(localStorage.getItem(KEY)||'null');if(!db){db={drivers:seedDrivers,bookings:[{id:'EL-1001',name:'أحمد محمد',phone:'01234567890',service:'توصيل المطارات',people:4,bags:3,date:todayISO,time:'20:30',from:'سموحة',to:'مطار برج العرب',car:'Hyundai Elantra AD',driver:'أحمد السيد',price:850,payment:'غير مدفوع',status:'مؤكد',notes:''},{id:'EL-1002',name:'سارة علي',phone:'01123456789',service:'رحلات المحافظات',people:3,bags:2,date:todayISO,time:'21:00',from:'الإسكندرية',to:'القاهرة',car:'Toyota Corolla',driver:'محمد علي',price:1200,payment:'عربون',status:'جاري',notes:''},{id:'EL-1003',name:'محمد حسن',phone:'01098765432',service:'الزفاف والأفراح',people:2,bags:0,date:todayISO,time:'22:00',from:'سان ستيفانو',to:'قاعة أفراح',car:'تحديد لاحقًا',driver:'',price:2500,payment:'غير مدفوع',status:'جديد',notes:'تجهيز مسبق'}]};save()}
+function save(){localStorage.setItem(KEY,JSON.stringify(db))}function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}function tag(s){let c=['مؤكد','مكتمل','متاح','متاحة'].includes(s)?'green':s==='جاري'?'blue':s==='ملغي'?'red':'';return `<span class="tag ${c}">${esc(s)}</span>`}function nav(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===p));renderAll()}document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>nav(b.dataset.page));
+function openNew(){edit=false;mt.textContent='حجز جديد';form.reset();form.id.value='';form.date.value=todayISO;form.people.value=1;form.bags.value=0;form.price.value=0;fillDrivers('');modal.classList.add('open')}function openEdit(id){let b=db.bookings.find(x=>x.id===id);if(!b)return;edit=true;mt.textContent='تعديل '+b.id;Object.keys(b).forEach(k=>{if(form.elements[k])form.elements[k].value=b[k]});fillDrivers(b.driver);modal.classList.add('open')}function closeModal(){modal.classList.remove('open')}function fillDrivers(sel){driverSelect.innerHTML='<option value="">بدون إسناد</option>'+db.drivers.map(d=>`<option ${d.name===sel?'selected':''}>${esc(d.name)}</option>`).join('')}
+form.onsubmit=e=>{e.preventDefault();let o=Object.fromEntries(new FormData(form));o.people=+o.people;o.bags=+o.bags;o.price=+o.price;if(edit){let i=db.bookings.findIndex(x=>x.id===o.id);db.bookings[i]={...db.bookings[i],...o}}else{o.id='EL-'+Date.now().toString().slice(-6);o.status='جديد';db.bookings.unshift(o)}save();closeModal();renderAll()};
+function status(id,s){let b=db.bookings.find(x=>x.id===id);if(b){b.status=s;save();renderAll()}}function assign(id,v){let b=db.bookings.find(x=>x.id===id);if(b){b.driver=v;save();renderAll()}}function del(id){if(confirm('حذف الحجز؟')){db.bookings=db.bookings.filter(x=>x.id!==id);save();renderAll()}}
+function wa(id){let b=db.bookings.find(x=>x.id===id);if(!b)return;let n=b.phone.replace(/\D/g,'');if(n.startsWith('0'))n='20'+n.slice(1);let msg=`حجز ELANO LIMOUSINE\nكود: ${b.id}\nاسم العميل: ${b.name}\nالهاتف: ${b.phone}\nالخدمة: ${b.service}\nالتاريخ: ${b.date}\nالوقت: ${b.time}\nمن: ${b.from}\nإلى: ${b.to}\nالسيارة: ${b.car}\nالسائق: ${b.driver||'سيتم التحديد'}\nالأفراد: ${b.people}\nالشنط: ${b.bags}\nالسعر: ${b.price} جنيه\nالحالة: ${b.status}`;window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank')}
+function track(id){window.open('../track/?booking='+encodeURIComponent(id),'_blank')}
+function row(b){return `<tr><td><b>${esc(b.id)}</b></td><td>${esc(b.name)}<br><span style="color:#888">${esc(b.phone)}</span></td><td>${esc(b.service)}</td><td>${esc(b.date)}<br>${esc(b.time)}</td><td>${esc(b.from)} ← ${esc(b.to)}</td><td>${esc(b.car)}</td><td>${esc(b.driver||'—')}</td><td>${Number(b.price||0).toLocaleString('ar-EG')} ج</td><td>${tag(b.status)}</td><td><div class="actions"><button class="btn ghost small" onclick="openEdit('${b.id}')">تعديل</button><select class="filters" style="margin:0;padding:6px;min-width:auto" onchange="status('${b.id}',this.value)"><option value="">الحالة</option><option>جديد</option><option>مؤكد</option><option>جاري</option><option>مكتمل</option><option>ملغي</option></select><select class="filters" style="margin:0;padding:6px;min-width:auto" onchange="assign('${b.id}',this.value)"><option value="">السائق</option>${db.drivers.map(d=>`<option ${d.name===b.driver?'selected':''}>${esc(d.name)}</option>`).join('')}</select><button class="btn ghost small" onclick="wa('${b.id}')">واتساب</button><button class="btn ghost small" onclick="track('${b.id}')">تتبع</button><button class="btn danger small" onclick="del('${b.id}')">حذف</button></div></td></tr>`}
+function renderBookings(){let q=(document.getElementById('q')?.value||'').toLowerCase(),s=document.getElementById('sf')?.value||'',d=document.getElementById('df')?.value||'';let a=db.bookings.filter(b=>(!q||[b.id,b.name,b.phone,b.service,b.from,b.to].join(' ').toLowerCase().includes(q))&&(!s||b.status===s)&&(!d||b.date===d));bookingsTable.innerHTML=a.length?'<table><tr><th>الكود</th><th>العميل</th><th>الخدمة</th><th>الموعد</th><th>المسار</th><th>السيارة</th><th>السائق</th><th>السعر</th><th>الحالة</th><th>إجراءات</th></tr>'+a.map(row).join('')+'</table>':'<div class="empty">لا توجد حجوزات مطابقة</div>'}
+function renderDrivers(){driversTable.innerHTML='<table><tr><th>السائق</th><th>الهاتف</th><th>السيارة</th><th>الحالة</th><th>رحلاته الآن</th></tr>'+db.drivers.map(d=>{let n=db.bookings.filter(b=>b.driver===d.name&&b.status==='جاري').length;return `<tr><td>${esc(d.name)}</td><td>${esc(d.phone)}</td><td>${esc(d.car)}</td><td>${tag(n?'مشغول':'متاح')}</td><td>${n}</td></tr>`}).join('')+'</table>'}function renderFleet(){fleetTable.innerHTML='<table><tr><th>السيارة</th><th>الفئة</th><th>السعة</th><th>الحالة</th><th>السائق الحالي</th></tr>'+seedFleet.map(v=>{let b=db.bookings.find(x=>x.car===v[0]&&x.status==='جاري');let st=b?'في رحلة':v[3];return `<tr><td>${v[0]}</td><td>${v[1]}</td><td>${v[2]}</td><td>${tag(st)}</td><td>${b?esc(b.driver):'—'}</td></tr>`}).join('')+'</table>'}function renderCustomers(){let m={};db.bookings.forEach(b=>{if(!m[b.phone])m[b.phone]={name:b.name,phone:b.phone,count:0,total:0};m[b.phone].count++;m[b.phone].total+=+b.price||0});let a=Object.values(m);customersTable.innerHTML=a.length?'<table><tr><th>الاسم</th><th>الهاتف</th><th>الحجوزات</th><th>إجمالي القيمة</th></tr>'+a.map(c=>`<tr><td>${esc(c.name)}</td><td>${esc(c.phone)}</td><td>${c.count}</td><td>${c.total.toLocaleString('ar-EG')} ج</td></tr>`).join('')+'</table>':'<div class="empty">لا يوجد عملاء</div>'}function renderHome(){sToday.textContent=db.bookings.filter(b=>b.date===todayISO&&b.status!=='ملغي').length;sActive.textContent=db.bookings.filter(b=>b.status==='جاري').length;sDrivers.textContent=db.drivers.filter(d=>!db.bookings.some(b=>b.driver===d.name&&b.status==='جاري')).length;sRevenue.textContent=db.bookings.filter(b=>b.status!=='ملغي').reduce((a,b)=>a+(+b.price||0),0).toLocaleString('ar-EG');let a=db.bookings.filter(b=>b.date===todayISO);today.innerHTML=a.length?'<table><tr><th>الوقت</th><th>العميل</th><th>الخدمة</th><th>المسار</th><th>الحالة</th></tr>'+a.map(b=>`<tr><td>${b.time}</td><td>${esc(b.name)}</td><td>${esc(b.service)}</td><td>${esc(b.from)} ← ${esc(b.to)}</td><td>${tag(b.status)}</td></tr>`).join('')+'</table>':'<div class="empty">لا توجد رحلات اليوم</div>';fleetHome.innerHTML=seedFleet.map(v=>`<div class="item"><span>${v[0]}</span>${tag(v[3])}</div>`).join('')}function renderAll(){renderHome();renderBookings();renderDrivers();renderFleet();renderCustomers();fillDrivers('')}function clearFilters(){q.value='';sf.value='';df.value='';renderBookings()}renderAll();
+</script></body></html>
