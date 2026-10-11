@@ -286,6 +286,36 @@ section{padding:75px 0}
 .status.ok{display:block;background:#103b2b;color:#8ef0be}
 .status.err{display:block;background:#3b1719;color:#ffaaa9}
 
+/* ===== Booking Reference ===== */
+.booking-ref{
+  display:none;
+  margin-top:14px;
+  padding:16px;
+  background:linear-gradient(135deg,#1a1710,#14110c);
+  border:1px solid var(--gold2);
+  border-radius:14px;
+  text-align:center;
+}
+.booking-ref.show{display:block}
+.booking-ref .label{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:6px;
+}
+.booking-ref .number{
+  font-size:26px;
+  font-weight:bold;
+  color:var(--gold2);
+  letter-spacing:2px;
+  font-family:monospace;
+  direction:ltr;
+}
+.booking-ref .note{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:8px;
+}
+
 /* About */
 .about-box{max-width:900px;margin:auto;text-align:center}
 .about-box p{color:var(--muted);line-height:2;font-size:17px}
@@ -446,9 +476,9 @@ footer{
 <section style="padding-top:0">
   <div class="wrap">
     <div class="stats reveal">
-      <div class="stat"><b>+5</b><span>سنين خبرة</span></div>
-      <div class="stat"><b>+6524</b><span>رحلة ناجحة</span></div>
-      <div class="stat"><b>+5935</b><span>عميل سعيد</span></div>
+      <div class="stat"><b>+10</b><span>سنين خبرة</span></div>
+      <div class="stat"><b>+5000</b><span>رحلة ناجحة</span></div>
+      <div class="stat"><b>+1500</b><span>عميل سعيد</span></div>
       <div class="stat"><b>27</b><span>محافظة تغطية</span></div>
     </div>
   </div>
@@ -608,6 +638,11 @@ footer{
         <div class="field full">
           <button class="btn gold" type="submit" style="width:100%">📲 إرسال طلب الحجز على واتساب</button>
           <div id="status" class="status"></div>
+          <div id="bookingRef" class="booking-ref">
+            <div class="label">رقم الحجز المرجعي</div>
+            <div class="number" id="bookingRefNumber">—</div>
+            <div class="note">احتفظ بالرقم ده للمتابعة</div>
+          </div>
         </div>
       </form>
       <p class="hint" style="margin-top:14px;text-align:center">سيتم فتح واتساب برسالة تشمل بياناتك وتفاصيل الرحلة وفئة السيارة المقترحة.</p>
@@ -762,9 +797,27 @@ function buildReview(r) {
 const track = document.getElementById("sliderTrack");
 [...reviews, ...reviews].forEach(r => track.appendChild(buildReview(r)));
 
+/* ===== Booking Reference Generator ===== */
+const START_NUMBER = 6782;
+
+function getNextBookingNumber() {
+  const stored = parseInt(localStorage.getItem("elano_last_booking") || "0", 10);
+  const next = stored >= START_NUMBER ? stored + 1 : START_NUMBER;
+  localStorage.setItem("elano_last_booking", next);
+  return next;
+}
+
+function generateBookingRef() {
+  const seq = getNextBookingNumber();
+  const rand = Math.floor(1000 + Math.random() * 9000);
+  return { seq, ref: `ELANO-${seq}-${rand}` };
+}
+
 /* ===== Booking form ===== */
 const form = document.querySelector("#bookingForm");
 const statusEl = document.querySelector("#status");
+const bookingRefEl = document.querySelector("#bookingRef");
+const bookingRefNumber = document.querySelector("#bookingRefNumber");
 
 function showStatus(text, ok = false) {
   statusEl.textContent = text;
@@ -821,7 +874,11 @@ form.addEventListener("submit", e => {
     return;
   }
 
+  /* Generate booking reference */
+  const booking = generateBookingRef();
+
   const lines = [
+    "🔖 رقم الحجز: " + booking.ref,
     "طلب حجز جديد - ELANO LIMOUSINE",
     "———",
     "الاسم: " + payload.name,
@@ -844,6 +901,10 @@ form.addEventListener("submit", e => {
   if (!win) window.location.href = waUrl;
 
   showStatus("✅ تم تجهيز بيانات الحجز وفتح واتساب لإرسال الطلب.", true);
+
+  /* Show booking reference to user */
+  bookingRefNumber.textContent = booking.ref;
+  bookingRefEl.classList.add("show");
 });
 
 /* ===== Reveal on scroll ===== */
