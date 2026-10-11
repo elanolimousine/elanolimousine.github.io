@@ -754,11 +754,17 @@ form.addEventListener("submit", e => {
   });
   if (hasError) {
     showStatus("من فضلك اكمل الحقول المطلوبة.");
-    return;
-  }
-  if (!/^01[0-9]{9}$/.test(payload.phone.replace(/\s/g, ""))) {
-    markError(form.querySelector('[name="phone"]'));
-    showStatus("من فضلك اكتب رقم موبايل صحيح (11 رقم يبدأ بـ 01).");
+   
+    }
+  return;
+/* Validate phone: accepts Egyptian local/international and any international format */
+const phoneClean = payload.phone.replace(/[\s\-()]/g, "");
+const phoneRegex = /^(\+?[1-9]\d{6,15}|00[1-9]\d{6,15}|0[1-9]\d{7,14})$/;
+if (!phoneRegex.test(phoneClean)) {
+  markError(form.querySelector('[name="phone"]'));
+  showStatus("من فضلك اكتب رقم موبايل صحيح (مثال: 01223831573 أو +201223831573).");
+  return;
+}
     return;
   }
   if (payload.people > 13) {
