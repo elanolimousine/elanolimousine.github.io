@@ -9,6 +9,889 @@
 <meta name="author" content="ELANO LIMOUSINE">
 <meta name="theme-color" content="#c9a45c">
 
+<meta property="og:type" content="website">
+<meta property="og:title" content="ELANO LIMOUSINE | خدمة تليق بيك">
+<meta property="og:description" content="رحلتك تبدأ من الاختيار الصح. حجز سيارات وسائقين لمصر كلها.">
+<meta property="og:image" content="assets/fleet-hero.jpg">
+<meta property="og:url" content="https://elanolimousine.github.io/">
+<meta property="og:locale" content="ar_EG">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ELANO LIMOUSINE">
+<meta name="twitter:description" content="رحلتك تبدأ من الاختيار الصح.">
+<meta name="twitter:image" content="assets/fleet-hero.jpg">
+
+<link rel="icon" href="assets/elano-logo.png">
+<link rel="apple-touch-icon" href="assets/elano-logo.png">
+
+<style>
+:root{
+  --bg:#080808;--panel:#111113;--gold:#c9a45c;--gold2:#e6c982;
+  --text:#f7f2e8;--muted:#aaa39a;--line:#292722;--ok:#62d6a1;
+  --wa:#25d366;--phone:#c9a45c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:radial-gradient(circle at 80% 0,#1a1710 0,transparent 32%),var(--bg);
+  color:var(--text);
+  font-family:Tahoma,Arial,sans-serif;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:auto;padding:0 20px}
+
+/* ===== Header ===== */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,8,8,.9);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand img{height:54px;max-width:180px;object-fit:contain;transition:.4s}
+.brand:hover img{transform:scale(1.05)}
+.links{display:flex;gap:24px;color:#ddd}
+.links a{position:relative;transition:.3s}
+.links a:hover{color:var(--gold2)}
+.links a::after{
+  content:'';position:absolute;bottom:-6px;right:0;
+  width:0;height:2px;background:var(--gold2);transition:.3s;
+}
+.links a:hover::after{width:100%}
+.nav-actions{display:flex;gap:10px;align-items:center}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  border:0;border-radius:12px;padding:13px 18px;
+  font-weight:bold;cursor:pointer;transition:.25s;font-family:inherit;font-size:15px;
+  position:relative;overflow:hidden;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:linear-gradient(135deg,#b88b3f,#e0bd72);color:#17130b}
+.btn.gold::before{
+  content:'';position:absolute;top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+  transition:.6s;
+}
+.btn.gold:hover::before{left:100%}
+.btn.ghost{background:#171719;border:1px solid var(--line);color:var(--text)}
+.btn.wa{background:var(--wa);color:#fff}
+
+.burger{
+  display:none;background:none;border:1px solid var(--line);
+  border-radius:10px;padding:10px 12px;cursor:pointer;
+}
+.burger span{
+  display:block;width:22px;height:2px;background:var(--text);
+  margin:4px 0;transition:.3s;
+}
+.burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+.mobile-menu{
+  display:none;flex-direction:column;gap:5px;
+  padding:15px 20px 20px;
+  border-top:1px solid var(--line);
+  background:rgba(8,8,8,.98);
+}
+.mobile-menu a{padding:12px;border-radius:8px;color:#ddd;transition:.3s}
+.mobile-menu a:hover{background:#171719;color:var(--gold2);padding-right:20px}
+.mobile-menu.show{display:flex}
+
+/* ===== Hero ===== */
+.hero{
+  padding:90px 0 70px;min-height:650px;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;top:10%;left:-10%;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(230,201,130,.08),transparent 70%);
+  animation:float 8s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes float{
+  0%,100%{transform:translate(0,0)}
+  50%{transform:translate(30px,-30px)}
+}
+.hero h1{font-size:clamp(38px,5vw,68px);line-height:1.08;margin:0 0 20px}
+.goldtxt{color:var(--gold2)}
+.hero p{font-size:18px;line-height:1.9;color:var(--muted);max-width:650px}
+.hero-badge{
+  display:inline-block;
+  background:#1a1710;border:1px solid #3a3120;
+  color:var(--gold2);font-weight:bold;letter-spacing:2px;
+  padding:8px 16px;border-radius:20px;font-size:12px;margin-bottom:20px;
+  animation:shine 3s ease-in-out infinite;
+}
+@keyframes shine{
+  0%,100%{box-shadow:0 0 0 rgba(230,201,130,0)}
+  50%{box-shadow:0 0 25px rgba(230,201,130,.4)}
+}
+.hero-card{
+  background:linear-gradient(145deg,#15130f,#0f0f10);
+  border:1px solid #3a3120;border-radius:24px;padding:24px;
+  box-shadow:0 20px 70px #0008;
+  transition:.5s;
+}
+.hero-card:hover{transform:translateY(-6px);box-shadow:0 30px 90px #000a}
+.hero-card img{width:100%;height:310px;object-fit:cover;border-radius:16px}
+.hero-features{
+  display:flex;justify-content:space-between;gap:10px;
+  margin-top:15px;font-size:14px;color:var(--muted);
+}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+
+/* ===== Sections ===== */
+section{padding:75px 0}
+.section-title{text-align:center;margin-bottom:35px}
+.section-title h2{font-size:34px;margin:0 0 10px}
+.section-title p{color:var(--muted);margin:0}
+
+/* Stats */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:15px;
+  background:linear-gradient(145deg,#14110c,#0e0e0f);
+  border:1px solid #3a3120;border-radius:20px;padding:30px 20px;
+}
+.stat{text-align:center;transition:.3s}
+.stat:hover{transform:translateY(-5px)}
+.stat b{display:block;font-size:34px;color:var(--gold2);margin-bottom:5px}
+.stat span{color:var(--muted);font-size:14px}
+
+/* Grid cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:18px;padding:24px;
+  transition:.4s;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;right:0;
+  width:100px;height:100px;
+  background:radial-gradient(circle,var(--gold2),transparent 70%);
+  opacity:0;transition:.5s;
+}
+.card:hover{border-color:#3a3120;transform:translateY(-6px)}
+.card:hover::before{opacity:.15}
+.card h3{margin:0 0 10px;color:var(--gold2);font-size:20px}
+.card p{color:var(--muted);line-height:1.8;margin:0}
+
+/* Fleet */
+.fleet{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.car{
+  background:#111;border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;transition:.4s;
+}
+.car:hover{transform:translateY(-6px);border-color:#3a3120}
+.car img{width:100%;height:170px;object-fit:cover;transition:.6s}
+.car:hover img{transform:scale(1.08)}
+.car .car-body{padding:15px}
+.car b{display:block;font-size:17px;margin-bottom:4px}
+.car span{color:var(--muted);font-size:13px}
+
+/* ===== Reviews Slider ===== */
+.reviews-section{
+  background:linear-gradient(180deg,transparent,#0c0c0e,transparent);
+  overflow:hidden;position:relative;
+}
+.slider-wrap{
+  position:relative;overflow:hidden;
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  padding:20px 0;
+}
+.slider-track{
+  display:flex;gap:20px;
+  animation:scroll 60s linear infinite;
+  width:max-content;
+}
+.slider-track:hover{animation-play-state:paused}
+@keyframes scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(50%)}
+}
+.review{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:18px;padding:24px;
+  width:340px;flex-shrink:0;
+  transition:.4s;
+}
+.review:hover{border-color:#3a3120;transform:translateY(-5px)}
+.review .stars{color:var(--gold2);margin-bottom:12px;font-size:16px;letter-spacing:2px}
+.review p{color:#d8d1c4;line-height:1.9;font-size:14px;margin:0 0 18px;min-height:100px}
+.reviewer{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:bold;font-size:20px;color:#17130b;
+  background:linear-gradient(135deg,#b88b3f,#e0bd72);
+  flex-shrink:0;
+}
+.reviewer-info b{display:block;font-size:15px}
+.reviewer-info span{color:var(--muted);font-size:12px}
+
+/* FAQ */
+.faq{max-width:820px;margin:auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;transition:.3s;
+}
+.faq-item:hover{border-color:#3a3120}
+.faq-item summary{
+  cursor:pointer;padding:18px 22px;font-weight:bold;
+  color:var(--text);display:flex;justify-content:space-between;
+  align-items:center;list-style:none;transition:.3s;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{
+  content:'+';font-size:22px;color:var(--gold2);
+  transition:.3s;
+}
+.faq-item[open] summary::after{content:'−';transform:rotate(180deg)}
+.faq-item[open] summary{color:var(--gold2)}
+.faq-item p{
+  padding:0 22px 20px;margin:0;color:var(--muted);
+  line-height:1.9;font-size:15px;
+}
+
+/* Booking */
+.booking{
+  background:linear-gradient(145deg,#14110c,#0e0e0f);
+  border:1px solid #3a3120;border-radius:24px;
+  padding:26px;max-width:900px;margin:auto;
+}
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;color:#c8c0b3}
+.field input,.field select,.field textarea{
+  width:100%;background:#09090b;color:var(--text);
+  border:1px solid #302d27;border-radius:10px;padding:12px;
+  outline:none;font-family:inherit;font-size:15px;
+  transition:.3s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--gold2);box-shadow:0 0 0 3px rgba(230,201,130,.1)
+}
+.field textarea{min-height:90px;resize:vertical}
+.field input.err,.field select.err{border-color:#ff6b6b}
+.quote{
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+  padding:16px;background:#0a0a0b;border:1px solid #3a3120;
+  border-radius:14px;margin:5px 0 0;
+}
+.quote strong{font-size:22px;color:var(--gold2)}
+.hint{color:var(--muted);font-size:12px;line-height:1.7;margin:0}
+.status{
+  margin-top:12px;padding:12px;border-radius:10px;display:none;
+  font-size:14px;
+}
+.status.ok{display:block;background:#103b2b;color:#8ef0be}
+.status.err{display:block;background:#3b1719;color:#ffaaa9}
+
+/* About */
+.about-box{max-width:900px;margin:auto;text-align:center}
+.about-box p{color:var(--muted);line-height:2;font-size:17px}
+
+/* Footer */
+footer{
+  border-top:1px solid var(--line);
+  padding:45px 0 25px;color:var(--muted);
+  margin-top:40px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;
+  margin-bottom:30px;
+}
+.footer-col h4{color:var(--gold2);margin:0 0 15px;font-size:16px}
+.footer-col a,.footer-col p{
+  display:block;color:var(--muted);margin:0 0 10px;
+  font-size:14px;transition:.3s;
+}
+.footer-col a:hover{color:var(--gold2);transform:translateX(-4px)}
+.social{display:flex;gap:12px;margin-top:15px}
+.social a{
+  width:42px;height:42px;border-radius:50%;
+  background:#171719;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  transition:.3s;margin:0;
+}
+.social a:hover{background:var(--gold2);border-color:var(--gold2);color:#17130b;transform:translateY(-4px)}
+.social svg{width:20px;height:20px;fill:currentColor}
+.footer-bottom{
+  border-top:1px solid var(--line);padding-top:20px;
+  text-align:center;font-size:13px;
+}
+
+/* Floating buttons */
+.floats{
+  position:fixed;bottom:22px;left:22px;z-index:60;
+  display:flex;flex-direction:column;gap:12px;
+}
+.float-btn{
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 25px rgba(0,0,0,.4);cursor:pointer;
+  transition:.3s;border:0;
+}
+.float-btn:hover{transform:scale(1.1) rotate(8deg)}
+.float-btn svg{width:28px;height:28px;fill:#fff}
+.float-wa{background:var(--wa);position:relative}
+.float-wa::after{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  background:var(--wa);animation:pulse 2s infinite;z-index:-1;
+}
+@keyframes pulse{
+  0%{transform:scale(1);opacity:.6}
+  100%{transform:scale(1.5);opacity:0}
+}
+.float-phone{background:var(--gold);color:#17130b}
+.float-phone svg{fill:#17130b}
+
+.to-top{
+  position:fixed;bottom:22px;right:22px;z-index:60;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--panel);border:1px solid var(--line);
+  color:var(--gold2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:.3s;
+  font-size:22px;
+}
+.to-top.show{opacity:1;pointer-events:all}
+.to-top:hover{background:var(--gold2);color:#17130b;transform:translateY(-4px)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:.7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* Responsive */
+@media(max-width:900px){
+  .links,.nav-actions .btn{display:none}
+  .burger{display:block}
+  .hero{grid-template-columns:1fr;padding-top:55px;min-height:auto}
+  .hero-card img{height:250px}
+  .grid{grid-template-columns:1fr 1fr}
+  .fleet{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr;gap:20px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .grid,.form{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .fleet{grid-template-columns:1fr}
+  .hero-card img{height:220px}
+  .hero h1{font-size:36px}
+  .section-title h2{font-size:26px}
+  .footer-grid{grid-template-columns:1fr}
+  .stat b{font-size:26px}
+  .floats{bottom:15px;left:15px}
+  .float-btn{width:50px;height:50px}
+  .float-btn svg{width:24px;height:24px}
+  .to-top{width:42px;height:42px;bottom:15px;right:15px}
+  .review{width:280px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#"><img src="assets/elano-logo.png" alt="ELANO LIMOUSINE"></a>
+    <nav class="links">
+      <a href="#services">الخدمات</a>
+      <a href="#fleet">الأسطول</a>
+      <a href="#reviews">آراء العملاء</a>
+      <a href="#faq">أسئلة شائعة</a>
+      <a href="#booking">الحجز</a>
+      <a href="#about">عن ELANO</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn gold" href="#booking">احجز رحلتك</a>
+      <button class="burger" id="burger" aria-label="القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">الخدمات</a>
+    <a href="#fleet">الأسطول</a>
+    <a href="#reviews">آراء العملاء</a>
+    <a href="#faq">أسئلة شائعة</a>
+    <a href="#booking">الحجز</a>
+    <a href="#about">عن ELANO</a>
+    <a href="#booking" style="background:linear-gradient(135deg,#b88b3f,#e0bd72);color:#17130b;font-weight:bold">احجز رحلتك</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="reveal">
+    <span class="hero-badge">ELANO LIMOUSINE</span>
+    <h1>رحلتك تبدأ من <span class="goldtxt">الاختيار الصح.</span></h1>
+    <p>خدمة ليموزين احترافية للرحلات الخاصة، المطارات، المحافظات، رجال الأعمال والمناسبات — مع حجز إلكتروني وتغطية لكل محافظات مصر.</p>
+    <div class="cta">
+      <a class="btn gold" href="#booking">احجز الآن</a>
+      <a class="btn wa" id="waTop" href="#">واتساب مباشر</a>
+    </div>
+  </div>
+  <div class="hero-card reveal">
+    <img src="assets/fleet-hero.jpg" alt="ELANO fleet">
+    <div class="hero-features">
+      <span>⏰ دعم 24/7</span>
+      <span>🚗 أسطول متنوع</span>
+      <span>📅 حجز مسبق</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats ===== -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><b>+5</b><span>سنين خبرة</span></div>
+      <div class="stat"><b>+6524</b><span>رحلة ناجحة</span></div>
+      <div class="stat"><b>+5485</b><span>عميل سعيد</span></div>
+      <div class="stat"><b>27</b><span>محافظة تغطية</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>خدمات ELANO</h2>
+      <p>اختار الخدمة المناسبة لرحلتك واحجز في دقايق.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal"><h3>✈️ المطارات</h3><p>استقبال وتوصيل من وإلى جميع مطارات مصر مع متابعة مواعيد الرحلات وحجز مسبق.</p></div>
+      <div class="card reveal"><h3>🛣️ المحافظات</h3><p>رحلات بين المحافظات للأفراد والعائلات ورجال الأعمال بأسطول مريح وآمن.</p></div>
+      <div class="card reveal"><h3>💼 رجال الأعمال</h3><p>تنقلات خاصة بمستوى خدمة راقي مناسب للاجتماعات ورجال الأعمال والمناسبات الرسمية.</p></div>
+      <div class="card reveal"><h3>👨‍👩‍👧 الرحلات العائلية</h3><p>سيارات واسعة مناسبة للركاب والشنط مع حجز منظم وأسعار واضحة.</p></div>
+      <div class="card reveal"><h3>💍 الزفاف والمناسبات</h3><p>حجوزات خاصة للأفراح والمناسبات مع تنسيق مسبق وتشكيلات متنوعة.</p></div>
+      <div class="card reveal"><h3>🚘 مشوار خاص</h3><p>احجز السيارة والسائق للمدة أو الرحلة التي تحتاجها بالساعة أو باليوم.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Fleet ===== -->
+<section id="fleet" style="background:linear-gradient(180deg,transparent,#0c0c0e,transparent)">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>الأسطول</h2>
+      <p>اختار الفئة المناسبة لرحلتك.</p>
+    </div>
+    <div class="fleet">
+      <div class="car reveal">
+        <img src="assets/elantra-ad.jpg" alt="سيدان">
+        <div class="car-body"><b>سيدان</b><span>حتى 3 أفراد و3 شنط</span></div>
+      </div>
+      <div class="car reveal">
+        <img src="assets/xpander.jpg" alt="ميني فان">
+        <div class="car-body"><b>ميني فان</b><span>حتى 5 أفراد و4 شنط</span></div>
+      </div>
+      <div class="car reveal">
+        <img src="assets/hiace-new.jpg" alt="هاي اس">
+        <div class="car-body"><b>هاي اس</b><span>للمجموعات والحمولات الأكبر</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Reviews Slider ===== -->
+<section id="reviews" class="reviews-section">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>آراء عملائنا</h2>
+      <p>ثقة عملائنا من مصر والخليج والعالم هي أهم إنجازاتنا.</p>
+    </div>
+  </div>
+  <div class="slider-wrap">
+    <div class="slider-track" id="sliderTrack">
+      <!-- Reviews will be injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" style="background:linear-gradient(180deg,transparent,#0c0c0e,transparent)">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>الأسئلة الشائعة</h2>
+      <p>إجابات لأكثر الأسئلة اللي بتوصلنا.</p>
+    </div>
+    <div class="faq">
+      <details class="faq-item reveal">
+        <summary>إزاي أحجز رحلة؟</summary>
+        <p>املأ نموذج الحجز في الموقع وهيتم فتح واتساب مباشرة برسالة فيها كل بياناتك، وبعدها فريقنا هيتواصل معاك لتأكيد التفاصيل.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>إيه هي طرق الدفع المتاحة؟</summary>
+        <p>الدفع كاش للسائق، أو تحويل بنكي، أو محفظة إلكترونية. تقدر تتفق مع فريق الحجز على الطريقة الأنسب ليك.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>هل ممكن ألغي الحجز؟</summary>
+        <p>أيوه، تقدر تلغي أو تعدّل الحجز قبل الموعد بوقت كافٍ. يُفضّل إبلاغنا بأسرع وقت عشان نرتب باقي الرحلات.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>الأسعار بتتحدد إزاي؟</summary>
+        <p>السعر بيتحدد حسب المسافة، نوع السيارة، ومدة الرحلة. كلمنا على واتساب وهنبعتلك عرض سعر دقيق قبل الحجز.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>في خدمة مطارات 24 ساعة؟</summary>
+        <p>أيوه، خدمة المطارات متاحة 24 ساعة طوال أيام الأسبوع، مع متابعة مواعيد الرحلات لضمان الالتزام.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>هل التغطية لكل مصر؟</summary>
+        <p>أيوه، نغطي كل محافظات مصر — القاهرة، الجيزة، الإسكندرية، الساحل، الصعيد، سيناء، والبحر الأحمر.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>هل ممكن أحجز لرحلة طويلة أو يوم كامل؟</summary>
+        <p>أيوه، عندنا باقات بالساعة وباليوم للرحلات الطويلة والمناسبات. كلمنا على واتساب وهنظبطلك الباقة المناسبة.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>هل بتقبلوا حجز من خارج مصر؟</summary>
+        <p>أيوه، بنخدم عملاء من كل دول العالم. تقدر تحجز من أي مكان عبر واتساب وهنستقبلك في مطار الوصول أو أي مكان تحدد.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Booking ===== -->
+<section id="booking">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>احجز رحلتك</h2>
+      <p>املأ البيانات وسيتم تجهيز طلب الحجز على واتساب فورًا.</p>
+    </div>
+    <div class="booking reveal">
+      <form id="bookingForm" class="form" novalidate>
+        <div class="field"><label>الاسم *</label><input name="name" required></div>
+        <div class="field">
+          <label>الموبايل *</label>
+          <input name="phone" required inputmode="tel" placeholder="01223831573 أو +201223831573">
+          <small class="hint">مصري أو دولي — اكتب الرقم بأي صيغة (+20 / 0020 / 01...)</small>
+        </div>
+
+        <div class="field"><label>الخدمة *</label>
+          <select name="service">
+            <option>توصيل المطارات</option>
+            <option>رحلات المحافظات</option>
+            <option>رجال الأعمال</option>
+            <option>رحلات عائلية</option>
+            <option>حجز مسبق</option>
+            <option>مشوار خاص</option>
+            <option>الزفاف والأفراح</option>
+          </select>
+        </div>
+        <div class="field"><label>فئة السيارة *</label><input name="car" id="carCategory" value="سيدان" readonly required><small class="hint">يتم تحديد الفئة تلقائيًا حسب عدد الأفراد والشنط.</small></div>
+
+        <div class="field"><label>مكان الاستلام *</label><input name="from_zone" placeholder="اكتب مكان الاستلام" required></div>
+        <div class="field"><label>مكان الوصول *</label><input name="to_zone" placeholder="اكتب مكان الوصول" required></div>
+
+        <div class="field"><label>عدد الأفراد *</label><input name="people" id="peopleCount" type="number" min="1" value="1" required></div>
+        <div class="field"><label>عدد الشنط *</label><input name="bags" id="bagsCount" type="number" min="0" value="0" required></div>
+
+        <div class="field"><label>التاريخ *</label><input name="date" type="date" required></div>
+        <div class="field"><label>الوقت *</label><input name="time" type="time" required></div>
+
+        <div class="field full"><label>ملاحظات</label><textarea name="notes" placeholder="أي تفاصيل إضافية (رقم الرحلة، اسم الفندق، احتياجات خاصة...)"></textarea></div>
+
+        <div class="field full">
+          <div class="quote">
+            <div>
+              <div class="hint">فئة السيارة المحددة تلقائيًا</div>
+              <strong id="categorySummary">سيدان</strong>
+            </div>
+            <span class="hint">تأكيد تفاصيل الرحلة والسعر عبر واتساب</span>
+          </div>
+        </div>
+
+        <div class="field full">
+          <button class="btn gold" type="submit" style="width:100%">📲 إرسال طلب الحجز على واتساب</button>
+          <div id="status" class="status"></div>
+        </div>
+      </form>
+      <p class="hint" style="margin-top:14px;text-align:center">سيتم فتح واتساب برسالة تشمل بياناتك وتفاصيل الرحلة وفئة السيارة المقترحة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <h2>عن ELANO</h2>
+      <p>نركز على التنظيم، الالتزام بالمواعيد وتجربة حجز واضحة.</p>
+    </div>
+    <div class="about-box reveal">
+      <p>ELANO LIMOUSINE شركة ليموزين مصرية متخصصة في خدمات النقل الخاص للمطارات، المحافظات، رجال الأعمال، العائلات والمناسبات. بنشتغل على مدار الساعة، بأسطول متنوع من السيارات الحديثة وسائقين محترفين، وهدفنا إننا نقدملك تجربة حجز مريحة ورحلة آمنة ومريحة في كل مرة.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>ELANO LIMOUSINE</h4>
+        <p>رحلتك تبدأ من الاختيار الصح. خدمة ليموزين احترافية تغطي كل محافظات مصر على مدار الساعة.</p>
+        <div class="social">
+          <a href="https://www.facebook.com/share/1DQ6VH6PMp/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/elano_limousine/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zM12 0C8.7 0 8.3 0 7 .1c-1.3.1-2.2.3-3 .6-.8.3-1.5.7-2.2 1.4C1.1 2.8.7 3.5.4 4.3.1 5.1 0 6 0 7.3 0 8.6 0 9 0 12s0 3.4.1 4.7c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.7.5 3 .6C8.6 24 9 24 12 24s3.4 0 4.7-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-4.7s0-3.4-.1-4.7c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.4-2.2C21.2 1.1 20.5.7 19.7.4 18.9.1 18 0 16.7 0 15.4 0 15 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-10.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z"/></svg>
+          </a>
+          <a href="#" id="waFooter" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <a href="#services">الخدمات</a>
+        <a href="#fleet">الأسطول</a>
+        <a href="#reviews">آراء العملاء</a>
+        <a href="#faq">أسئلة شائعة</a>
+        <a href="#booking">احجز الآن</a>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل معنا</h4>
+        <a href="tel:01223831573">📞 01223831573</a>
+        <a href="mailto:elanolimousine@gmail.com">📧 elanolimousine@gmail.com</a>
+        <p>🗺️ تغطية كل محافظات مصر</p>
+        <p>⏰ خدمة 24/7</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © <span id="year"></span> ELANO LIMOUSINE — جميع الحقوق محفوظة
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Floating buttons ===== -->
+<div class="floats">
+  <a class="float-btn float-wa" id="waFloat" href="#" aria-label="واتساب">
+    <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2z"/></svg>
+  </a>
+  <a class="float-btn float-phone" href="tel:01223831573" aria-label="اتصال">
+    <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .7-.2 1l-2.3 2.2z"/></svg>
+  </a>
+</div>
+
+<button class="to-top" id="toTop" aria-label="أعلى">↑</button>
+
+<script>
+/* ===== Config ===== */
+const WA_NUMBER = "201223831573";
+const wa = "https://wa.me/" + WA_NUMBER;
+
+document.querySelector("#waTop").href = wa;
+document.querySelector("#waFooter").href = wa;
+document.querySelector("#waFloat").href = wa;
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ===== Mobile menu ===== */
+const burger = document.getElementById("burger");
+const mobileMenu = document.getElementById("mobileMenu");
+burger.addEventListener("click", () => {
+  burger.classList.toggle("open");
+  mobileMenu.classList.toggle("show");
+});
+mobileMenu.querySelectorAll("a").forEach(a => {
+  a.addEventListener("click", () => {
+    burger.classList.remove("open");
+    mobileMenu.classList.remove("show");
+  });
+});
+
+/* ===== Car category ===== */
+const peopleInput = document.querySelector("#peopleCount");
+const bagsInput = document.querySelector("#bagsCount");
+const carCategory = document.querySelector("#carCategory");
+const categorySummary = document.querySelector("#categorySummary");
+
+function chooseCategory() {
+  const people = Math.max(1, parseInt(peopleInput.value || "1", 10));
+  const bags = Math.max(0, parseInt(bagsInput.value || "0", 10));
+  let category;
+  if (people <= 3 && bags <= 3) category = "سيدان";
+  else if (people <= 5 && bags <= 4) category = "ميني فان";
+  else category = "هاي اس";
+  carCategory.value = category;
+  categorySummary.textContent = category;
+  return category;
+}
+peopleInput.addEventListener("input", chooseCategory);
+bagsInput.addEventListener("input", chooseCategory);
+chooseCategory();
+
+/* ===== Reviews Data ===== */
+const reviews = [
+  { name: "أحمد محمود", loc: "القاهرة، مصر", initial: "أ", text: "خدمة ممتازة والالتزام بالمواعيد شيء محترم. حجزت رحلة مطار الساعة 4 الفجر والسائق كان قبل الميعاد. تجربة راقية." },
+  { name: "محمد العتيبي", loc: "الرياض، السعودية", initial: "م", text: "تعامل راقي وسيارات نظيفة. استخدمت الخدمة في زيارة عائلية لمصر وكانت رحلة الإسكندرية ممتازة من كل النواحي." },
+  { name: "John Miller", loc: "London, UK", initial: "J", text: "Excellent service and very professional driver. Booked an airport transfer and everything was on time. Highly recommended!" },
+  { name: "منى عبدالله", loc: "الجيزة، مصر", initial: "م", text: "أفضل شركة ليموزين تعاملت معاها. السائق كان محترم جدًا والعربية مكيفة ونظيفة. هنكرر التجربة أكيد." },
+  { name: "خالد المطيري", loc: "الكويت", initial: "خ", text: "خدمة على مستوى عالي. استقبلوني في المطار وكان في لافتة باسمي. تعامل راقي وأسعار معقولة." },
+  { name: "Sarah Johnson", loc: "New York, USA", initial: "S", text: "Very reliable and comfortable. The driver was waiting for us at the airport with a sign. Will definitely use again on my next trip to Egypt." },
+  { name: "محمود حسن", loc: "الإسكندرية، مصر", initial: "م", text: "حجزت رحلة من القاهرة للإسكندرية والعكس. العربية مريحة والسائق محترف. التعامل كان سهل جدًا على واتساب." },
+  { name: "عبدالرحمن الشمري", loc: "الدمام، السعودية", initial: "ع", text: "من أفضل التجارب. حجزت لهم رحلة يوم كامل للعائلة وكانت الخدمة راقية جدًا. السائق بيتعامل باحترام." },
+  { name: "Fatima Al Mansoori", loc: "Abu Dhabi, UAE", initial: "F", text: "خدمة راقية جدًا. استقبلوني بمطار القاهرة وكان السائق محترم ومحترف. العربية كانت نظيفة ومريحة." },
+  { name: "ياسمين سامي", loc: "المنصورة، مصر", initial: "ي", text: "حجزت رحلة لمطار القاهرة فجرًا. جاء السائق في الميعاد بالظبط والعربية كانت مجهزة. تجربة مريحة جدًا." },
+  { name: "David Brown", loc: "Manchester, UK", initial: "D", text: "Professional service from start to finish. Very clean cars and polite drivers. Great value for money and highly organized." },
+  { name: "فهد القحطاني", loc: "جدة، السعودية", initial: "ف", text: "تعامل راقي جدًا. استخدمت خدمتهم لأكثر من رحلة خلال زيارتي لمصر. كل مرة كانوا في الموعد. أنصح بيهم بشدة." },
+  { name: "أميرة إبراهيم", loc: "طنطا، مصر", initial: "أ", text: "خدمة ممتازة للرحلات العائلية. العربية واسعة والشنط دخلت كلها. السائق كان محترم وساعدنا في التنزيل." },
+  { name: "Ahmed Al Balushi", loc: "Muscat, Oman", initial: "A", text: "خدمة ممتازة وأسعار مناسبة. تواصلت معاهم على واتساب وردوا بسرعة. الرحلة كانت مريحة جدًا." },
+  { name: "Lina Schmidt", loc: "Berlin, Germany", initial: "L", text: "Very good experience. On time, clean cars, and the driver spoke English. Made my trip in Egypt much easier." }
+];
+
+/* Build reviews with duplication for infinite loop */
+function buildReview(r) {
+  const el = document.createElement("div");
+  el.className = "review";
+  el.innerHTML = `
+    <div class="stars">★★★★★</div>
+    <p>${r.text}</p>
+    <div class="reviewer">
+      <div class="avatar">${r.initial}</div>
+      <div class="reviewer-info"><b>${r.name}</b><span>${r.loc}</span></div>
+    </div>
+  `;
+  return el;
+}
+const track = document.getElementById("sliderTrack");
+/* Add two copies for smooth infinite animation */
+[...reviews, ...reviews].forEach(r => track.appendChild(buildReview(r)));
+
+/* ===== Booking form ===== */
+const form = document.querySelector("#bookingForm");
+const statusEl = document.querySelector("#status");
+
+function showStatus(text, ok = false) {
+  statusEl.textContent = text;
+  statusEl.className = "status " + (ok ? "ok" : "err");
+}
+
+function markError(el) {
+  el.classList.add("err");
+  el.addEventListener("input", () => el.classList.remove("err"), { once: true });
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const fd = new FormData(form);
+  const payload = {
+    name: String(fd.get("name") || "").trim(),
+    phone: String(fd.get("phone") || "").trim(),
+    service: String(fd.get("service") || ""),
+    car: chooseCategory(),
+    from_zone: String(fd.get("from_zone") || "").trim(),
+    to_zone: String(fd.get("to_zone") || "").trim(),
+    people: Math.max(1, parseInt(fd.get("people") || "1", 10)),
+    bags: Math.max(0, parseInt(fd.get("bags") || "0", 10)),
+    date: String(fd.get("date") || ""),
+    time: String(fd.get("time") || ""),
+    notes: String(fd.get("notes") || "").trim()
+  };
+
+  const required = ["name", "phone", "from_zone", "to_zone", "date", "time"];
+  let hasError = false;
+  required.forEach(key => {
+    if (!payload[key]) {
+      const el = form.querySelector(`[name="${key}"]`);
+      if (el) { markError(el); hasError = true; }
+    }
+  });
+  if (hasError) {
+    showStatus("من فضلك اكمل الحقول المطلوبة.");
+    return;
+  }
+
+  /* Validate phone: accepts Egyptian and any international format */
+  const phoneClean = payload.phone.replace(/[\s\-()]/g, "");
+  const phoneRegex = /^(\+?[1-9]\d{6,15}|00[1-9]\d{6,15}|0[1-9]\d{7,14})$/;
+  if (!phoneRegex.test(phoneClean)) {
+    markError(form.querySelector('[name="phone"]'));
+    showStatus("من فضلك اكتب رقم موبايل صحيح (مثال: 01223831573 أو +201223831573).");
+    return;
+  }
+
+  if (payload.people > 13) {
+    showStatus("الحد الأقصى لفئة الهاي اس هو 13 فردًا. للاستفسار كلمنا على واتساب.");
+    peopleInput.focus();
+    return;
+  }
+
+  const lines = [
+    "طلب حجز جديد - ELANO LIMOUSINE",
+    "———",
+    "الاسم: " + payload.name,
+    "الموبايل: " + payload.phone,
+    "الخدمة: " + payload.service,
+    "فئة السيارة: " + payload.car,
+    "مكان الاستلام: " + payload.from_zone,
+    "مكان الوصول: " + payload.to_zone,
+    "عدد الأفراد: " + payload.people,
+    "عدد الشنط: " + payload.bags,
+    "التاريخ: " + payload.date,
+    "الوقت: " + payload.time,
+    "ملاحظات: " + (payload.notes || "لا يوجد"),
+    "———",
+    "يرجى تأكيد السعر وتفاصيل الحجز."
+  ];
+
+  const waUrl = wa + "?text=" + encodeURIComponent(lines.join("\n"));
+  const win = window.open(waUrl, "_blank");
+  if (!win) window.location.href = waUrl;
+
+  showStatus("✅ تم تجهيز بيانات الحجز وفتح واتساب لإرسال الطلب.", true);
+});
+
+/* ===== Reveal on scroll ===== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("in");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+/* ===== Scroll to top ===== */
+const toTop = document.getElementById("toTop");
+window.addEventListener("scroll", () => {
+  toTop.classList.toggle("show", window.scrollY > 500);
+});
+toTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
+</body>
+</html><!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ELANO LIMOUSINE | خدمة تليق بيك</title>
+<meta name="description" content="ELANO LIMOUSINE — حجز سيارات وسائقين، مطارات، محافظات، رجال أعمال ومناسبات. تغطية مصر كلها، خدمة 24/7، أسطول متنوع.">
+<meta name="keywords" content="ليموزين, ليموزين مصر, توصيل مطار, رحلات محافظات, سيارات بسائق, ELANO, ليموزين القاهرة">
+<meta name="author" content="ELANO LIMOUSINE">
+<meta name="theme-color" content="#c9a45c">
+
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="ELANO LIMOUSINE | خدمة تليق بيك">
