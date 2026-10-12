@@ -286,7 +286,7 @@ section{padding:75px 0}
 .status.ok{display:block;background:#103b2b;color:#8ef0be}
 .status.err{display:block;background:#3b1719;color:#ffaaa9}
 
-/* ===== Booking Reference ===== */
+/* Booking Reference */
 .booking-ref{
   display:none;
   margin-top:14px;
@@ -417,6 +417,7 @@ footer{
   .review{width:280px}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head><body>
 
 <!-- ===== Header ===== -->
@@ -721,6 +722,11 @@ footer{
 const WA_NUMBER = "201223831573";
 const wa = "https://wa.me/" + WA_NUMBER;
 
+const SUPABASE_URL = "https://grqiaklawkrpyuvybvud.supabase.co";
+const SUPABASE_KEY = "sb_publishable_FafeVtBAkrWxbYd1iYXAEg_KJAZnn62";
+
+const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
 document.querySelector("#waTop").href = wa;
 document.querySelector("#waFooter").href = wa;
 document.querySelector("#waFloat").href = wa;
@@ -780,7 +786,6 @@ const reviews = [
   { name: "Lina Schmidt", loc: "Berlin, Germany", initial: "L", text: "Very good experience. On time, clean cars, and the driver spoke English. Made my trip in Egypt much easier." }
 ];
 
-/* Build reviews with duplication for infinite loop */
 function buildReview(r) {
   const el = document.createElement("div");
   el.className = "review";
@@ -796,22 +801,6 @@ function buildReview(r) {
 }
 const track = document.getElementById("sliderTrack");
 [...reviews, ...reviews].forEach(r => track.appendChild(buildReview(r)));
-
-/* ===== Booking Reference Generator ===== */
-const START_NUMBER = 6782;
-
-function getNextBookingNumber() {
-  const stored = parseInt(localStorage.getItem("elano_last_booking") || "0", 10);
-  const next = stored >= START_NUMBER ? stored + 1 : START_NUMBER;
-  localStorage.setItem("elano_last_booking", next);
-  return next;
-}
-
-function generateBookingRef() {
-  const seq = getNextBookingNumber();
-  const rand = Math.floor(1000 + Math.random() * 9000);
-  return { seq, ref: `ELANO-${seq}-${rand}` };
-}
 
 /* ===== Booking form ===== */
 const form = document.querySelector("#bookingForm");
@@ -829,7 +818,7 @@ function markError(el) {
   el.addEventListener("input", () => el.classList.remove("err"), { once: true });
 }
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", async e => {
   e.preventDefault();
   const fd = new FormData(form);
   const payload = {
@@ -841,16 +830,17 @@ form.addEventListener("submit", e => {
     to_zone: String(fd.get("to_zone") || "").trim(),
     people: Math.max(1, parseInt(fd.get("people") || "1", 10)),
     bags: Math.max(0, parseInt(fd.get("bags") || "0", 10)),
-    date: String(fd.get("date") || ""),
-    time: String(fd.get("time") || ""),
+    booking_date: String(fd.get("date") || ""),
+    booking_time: String(fd.get("time") || ""),
     notes: String(fd.get("notes") || "").trim()
   };
 
-  const required = ["name", "phone", "from_zone", "to_zone", "date", "time"];
+  const required = ["name", "phone", "from_zone", "to_zone", "booking_date", "booking_time"];
   let hasError = false;
   required.forEach(key => {
     if (!payload[key]) {
-      const el = form.querySelector(`[name="${key}"]`);
+      const nameAttr = key === "booking_date" ? "date" : key === "booking_time" ? "time" : key;
+      const el = form.querySelector(`[name="${nameAttr}"]`);
       if (el) { markError(el); hasError = true; }
     }
   });
@@ -859,7 +849,6 @@ form.addEventListener("submit", e => {
     return;
   }
 
-  /* Validate phone: accepts Egyptian and any international format */
   const phoneClean = payload.phone.replace(/[\s\-()]/g, "");
   const phoneRegex = /^(\+?[1-9]\d{6,15}|00[1-9]\d{6,15}|0[1-9]\d{7,14})$/;
   if (!phoneRegex.test(phoneClean)) {
@@ -874,11 +863,37 @@ form.addEventListener("submit", e => {
     return;
   }
 
-  /* Generate booking reference */
-  const booking = generateBookingRef();
+  showStatus("⏳ جاري تجهيز الحجز...", true);
+
+  let bookingRef = "ELANO-" + Math.floor(1000 + Math.random() * 9000);
+
+  if (sb) {
+    try {
+      const { data, error } = await sb.rpc("create_public_booking", {
+        p_name: payload.name,
+        p_phone: payload.phone,
+        p_service: payload.service,
+        p_car: payload.car,
+        p_from_zone: payload.from_zone,
+        p_to_zone: payload.to_zone,
+        p_people: payload.people,
+        p_bags: payload.bags,
+        p_booking_date: payload.booking_date,
+        p_booking_time: payload.booking_time,
+        p_notes: payload.notes || null
+      });
+      if (error) {
+        console.error("Booking DB save failed:", error.message);
+      } else if (data && data[0]) {
+        bookingRef = data[0].booking_ref;
+      }
+    } catch (err) {
+      console.error("Booking DB save failed:", err);
+    }
+  }
 
   const lines = [
-    "🔖 رقم الحجز: " + booking.ref,
+    "🔖 رقم الحجز: " + bookingRef,
     "طلب حجز جديد - ELANO LIMOUSINE",
     "———",
     "الاسم: " + payload.name,
@@ -889,8 +904,8 @@ form.addEventListener("submit", e => {
     "مكان الوصول: " + payload.to_zone,
     "عدد الأفراد: " + payload.people,
     "عدد الشنط: " + payload.bags,
-    "التاريخ: " + payload.date,
-    "الوقت: " + payload.time,
+    "التاريخ: " + payload.booking_date,
+    "الوقت: " + payload.booking_time,
     "ملاحظات: " + (payload.notes || "لا يوجد"),
     "———",
     "يرجى تأكيد السعر وتفاصيل الحجز."
@@ -901,9 +916,7 @@ form.addEventListener("submit", e => {
   if (!win) window.location.href = waUrl;
 
   showStatus("✅ تم تجهيز بيانات الحجز وفتح واتساب لإرسال الطلب.", true);
-
-  /* Show booking reference to user */
-  bookingRefNumber.textContent = booking.ref;
+  bookingRefNumber.textContent = bookingRef;
   bookingRefEl.classList.add("show");
 });
 
